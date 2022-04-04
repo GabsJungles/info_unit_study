@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:info_unity_study/config/theme.dart';
 import 'package:info_unity_study/widgets/auth_check.dart';
 
 class MeuAplicativo extends StatelessWidget {
@@ -9,9 +10,7 @@ class MeuAplicativo extends StatelessWidget {
     return MaterialApp(
       title: 'Info Unity Study',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
+      theme: theme(),
       home: AuthCheck(),
     );
   }

@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:info_unity_study/widgets/custom_appbar.dart';
+import 'package:info_unity_study/widgets/custom_drawer.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -27,6 +29,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: CustomDrawer(),
+      appBar: CustomAppBar(title: 'teste'),
     );
   }
 }
