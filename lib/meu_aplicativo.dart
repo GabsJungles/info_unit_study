@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/config/theme.dart';
+import 'package:info_unity_study/pages/initial_page.dart';
+import 'package:info_unity_study/pages/profile_page.dart';
 import 'package:info_unity_study/widgets/auth_check.dart';
 
 class MeuAplicativo extends StatelessWidget {
@@ -11,7 +13,7 @@ class MeuAplicativo extends StatelessWidget {
       title: 'Info Unity Study',
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      home: AuthCheck(),
+      home: ProfilePage(),
     );
   }
 }
