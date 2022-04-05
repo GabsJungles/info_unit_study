@@ -20,35 +20,23 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Scaffold(
           key: scaffoldKey,
           endDrawerEnableOpenDragGesture: false,
-          backgroundColor: ,
+          backgroundColor: Colors.red,
           endDrawer: Drawer(
-            child: ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.zero,
-              children: [
+             child: Column(
+               children: const [
                 DrawerHeader(
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF420074),
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        Column(
-                          children: [
-                            Text("Isabella McGinley", style: Theme.of(context).textTheme.headline4),
-                          ],
-                        ),
-                      ],
-                    )),
-                ListTile(
-                  leading: const Icon(Icons.email_outlined),
-                  title: Text('isabellabitt1@hotmail.com',
-                    style: Theme.of(context).textTheme.headline4)
-                  ),
-              ],
+                   child: CircleAvatar(),
+                 ),
+                 ListTile(
+                   title: Text('teste'),
+                 )
+               ],
+             )
             ),
           ),
-      ),
-    );
+      );
+        }
+}
       // actions: hasActions
       //     ? [
       //         IconButton(
@@ -58,5 +46,3 @@ class _CustomDrawerState extends State<CustomDrawer> {
       //             }),
       //       ]
       //     : null
-  }
-}
