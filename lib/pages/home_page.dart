@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       endDrawer: CustomDrawer(),
       appBar: CustomAppBar(title: 'teste'),
     );

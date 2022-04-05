@@ -29,17 +29,20 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       centerTitle: true, 
      actions: [
-            Builder(
-              builder: ((context) {
-                return IconButton(
-                    icon: const Icon(Icons.align_horizontal_right),
-                    onPressed: () => Scaffold.of(context).openEndDrawer(),
-                  );
-              }),
+            Column(
+              children: [
+                Builder(
+                  builder: ((context) {
+                    return IconButton(
+                        icon: const Icon(Icons.align_horizontal_right),
+                        onPressed: () => Scaffold.of(context).openEndDrawer(),
+                      );
+                  }),
+                ),
+              ],
             )
           ],
           title: Column(
-
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
