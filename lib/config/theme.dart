@@ -27,7 +27,7 @@ ThemeData theme() {
       headline3: TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.normal,
-        fontSize: 12,
+        fontSize: 20,
       ),
       //QUAL É A BOA E USER
       headline4: TextStyle(

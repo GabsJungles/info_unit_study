@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/config/theme.dart';
+import 'package:info_unity_study/widgets/search_bar.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -29,17 +30,13 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       centerTitle: true, 
      actions: [
-            Column(
-              children: [
-                Builder(
-                  builder: ((context) {
-                    return IconButton(
-                        icon: const Icon(Icons.align_horizontal_right),
-                        onPressed: () => Scaffold.of(context).openEndDrawer(),
-                      );
-                  }),
-                ),
-              ],
+            Builder(
+              builder: ((context) {
+                return IconButton(
+                    icon: const Icon(Icons.align_horizontal_right),
+                    onPressed: () => Scaffold.of(context).openEndDrawer(),
+                  );
+              }),
             )
           ],
           title: Column(
@@ -54,19 +51,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                     fit: BoxFit.contain),
                     shape: BoxShape.circle),
                   ),
-                  const SizedBox(height: 20),
-              Text('INFO UNITY STUDY', style: Theme.of(context).textTheme.headline4),
+                  const SizedBox(height: 0),
+              Text(title, style: Theme.of(context).textTheme.headline3),
+              SearchBar(),
             ],
           ),
-      // actions: hasActions
-      //     ? [
-      //         IconButton(
-      //             icon: Icon(Icons.message,
-      //                 color: Colors.white),
-      //             onPressed: () {
-      //             }),
-      //       ]
-      //     : null,
     );
   }
 
