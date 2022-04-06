@@ -20,7 +20,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Scaffold(
           key: scaffoldKey,
           endDrawerEnableOpenDragGesture: false,
-          backgroundColor: Colors.red,
           endDrawer: Drawer(
              child: Column(
                children: const [
