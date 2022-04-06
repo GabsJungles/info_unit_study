@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:info_unity_study/pages/login_page.dart';
+import 'package:info_unity_study/pages/register_page1.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
@@ -31,7 +33,6 @@ class _InitialPageState extends State<InitialPage>
               ),
             ),
 
-
 //TEXTO ABAIXO DA FOTO DA TELA INICIAL
 
             Container(
@@ -47,12 +48,13 @@ class _InitialPageState extends State<InitialPage>
 
             CustomButtons1(
               onPressed: () {
-                //TODO: NAVIGATE TO REGISTER PAGE
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => RegisterPage1())));
               },
               text: "REGISTRE-SE",
             ),
 
-                        const SizedBox(
+            const SizedBox(
               height: 40,
             ),
 
@@ -60,7 +62,8 @@ class _InitialPageState extends State<InitialPage>
 
             CustomButtons2(
               onPressed: () {
-                //TODO: NAVIGATE TO LOGIN PAGE
+                              Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => LoginPage())));
               },
             )
           ]),
