@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:info_unity_study/models/card_post_model.dart';
+import 'package:info_unity_study/widgets/criar_post.dart';
 import 'package:info_unity_study/widgets/custom_appbar.dart';
 import 'package:info_unity_study/widgets/custom_drawer.dart';
 
@@ -30,7 +32,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: CustomDrawer(),
-      appBar: CustomAppBar(title: 'teste'),
+      appBar: CustomAppBar(title: 'INFO UNITY STUDY'),
+      body: Column(
+        children: [
+          CriarPost(),
+          SizedBox(height: 40),
+          CardPost(text: 'CALENDÁRIO')
+        ],
+      ),
     );
   }
 }
