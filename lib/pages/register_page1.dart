@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:info_unity_study/pages/register_page2.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({
+class RegisterPage1 extends StatefulWidget {
+  const RegisterPage1({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage1> createState() => _RegisterPage1State();
 }
 
-class _LoginPageState extends State<LoginPage>
+class _RegisterPage1State extends State<RegisterPage1>
     with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ const SizedBox(
 
 
 ),
-//TEXTO ABAIXO DA FOTO DA TELA INICIAL
+//TEXTO ABAIXO DA LOGO DA TELA
 
             Container(
               child: Text("INFO UNITY STUDY",
@@ -86,19 +87,35 @@ Container(
                           fillColor: Colors.white,
                           filled: true,
                           border: OutlineInputBorder(),
-                          hintText: 'Digite sua Senha'
+                          hintText: 'Senha'
                         ))),
 
 
-const SizedBox(
-  height: 20,
+
+Container(
+  alignment: Alignment.bottomLeft,
+  child: Text('REPITA SUA SENHA',
+  style: Theme.of(context).textTheme.headline3),
 ),
+
+               const Padding(
+                    padding:
+                         EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                    child: TextField(
+                        decoration:  InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(),
+                          hintText: 'Senha'
+                        ))),
 
 //BOTÃO DE LOGIN
 
-            CustomButtons2(
+            CustomButtons1(
+              text: "PRÓXIMO",
               onPressed: () {
-                //TODO: NAVIGATE TO LOGIN PAGE
+                              Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => RegisterPage2())));
               },
             )
           ]),
