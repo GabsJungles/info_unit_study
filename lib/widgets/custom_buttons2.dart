@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:info_unity_study/pages/home_page.dart';
+import 'package:info_unity_study/pages/login_page.dart';
 
 class CustomButtons2 extends StatelessWidget {
   final Function() onPressed;
@@ -22,7 +24,7 @@ class CustomButtons2 extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(15.0),
         onTap: () {
-
+          onPressed();
         },
         child: Container(
           height: 45,

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:info_unity_study/pages/home_page.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
@@ -13,6 +15,17 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
+      final emailController = TextEditingController();
+      final passwordController = TextEditingController();
+
+  @override
+  void dispose(){
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,10 +72,11 @@ Container(
   style: Theme.of(context).textTheme.headline3),
 ),
 
-               const Padding(
+               Padding(
                     padding:
                          EdgeInsets.symmetric(horizontal: 6, vertical: 16),
                     child: TextField(
+                      controller: emailController,
                         decoration:  InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
@@ -78,10 +92,11 @@ Container(
   style: Theme.of(context).textTheme.headline3),
 ),
 
-               const Padding(
+               Padding(
                     padding:
                          EdgeInsets.symmetric(horizontal: 6, vertical: 16),
                     child: TextField(
+                      controller: passwordController,
                         decoration:  InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
@@ -97,11 +112,16 @@ const SizedBox(
 //BOTÃO DE LOGIN
 
             CustomButtons2(
-              onPressed: () {
-                //TODO: NAVIGATE TO LOGIN PAGE
-              },
+              onPressed: signIn,
             )
           ]),
     );
+  }
+  Future signIn() async{
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim());
+      Navigator.push(context, 
+      MaterialPageRoute(builder: ((context) => HomePage())));
   }
 }

@@ -23,7 +23,9 @@ class CustomButtons1 extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0)),
       child: InkWell(
         borderRadius: BorderRadius.circular(15.0),
-        onTap: () {},
+        onTap: () {
+          onPressed();
+        },
         child: Container(
           height: 45,
           width: 270,

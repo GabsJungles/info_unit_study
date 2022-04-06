@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:info_unity_study/pages/register_page3.dart';
+import 'package:info_unity_study/pages/register%20pages/register_page3.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
