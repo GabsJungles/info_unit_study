@@ -108,7 +108,16 @@ class _RegisterPage1State extends State<RegisterPage1>
 
             CustomButtons1(
               text: "PRÓXIMO",
-              onPressed: signUp,
+              onPressed: (){
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: ((context) => RegisterPage2(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      )),
+                ));
+              },
             )
           ]),
     );
@@ -119,6 +128,11 @@ class _RegisterPage1State extends State<RegisterPage1>
       email: emailController.text.trim(),
       password: passwordController.text.trim());
       Navigator.push(context, 
-      MaterialPageRoute(builder: ((context) => RegisterPage2())));
+      MaterialPageRoute(builder: ((context) => RegisterPage2(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      ))));
   }
+
+
 }

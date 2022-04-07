@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/pages/home_page.dart';
+import 'package:info_unity_study/pages/profile_page.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
@@ -122,6 +123,6 @@ const SizedBox(
       email: emailController.text.trim(),
       password: passwordController.text.trim());
       Navigator.push(context, 
-      MaterialPageRoute(builder: ((context) => HomePage())));
+      MaterialPageRoute(builder: ((context) => ProfilePage())));
   }
 }
