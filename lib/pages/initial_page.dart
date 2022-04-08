@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/pages/login_page.dart';
-import 'package:info_unity_study/pages/register_page1.dart';
+import 'package:info_unity_study/pages/register%20pages/register_page1.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
