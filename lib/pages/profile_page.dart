@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 
 class ProfilePage extends StatefulWidget {
+  
   const ProfilePage({
     Key? key,
   }) : super(key: key);
@@ -88,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {});
   }
 
-  Widget bottomSheet(BuildContext context) {
+   Widget bottomSheet(BuildContext context) {
     return Container(
       height: 100.0,
       width: MediaQuery.of(context).size.width,
@@ -105,13 +106,13 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
             TextButton.icon(
-                onPressed: () => _upload('camera'),
-                icon: const Icon(Icons.camera),
-                label: const Text('camera')),
+                    onPressed: () => _upload('camera'),
+                    icon: const Icon(Icons.camera),
+                    label: const Text('camera')),
             TextButton.icon(
-                onPressed: () => _upload('gallery'),
-                icon: const Icon(Icons.library_add),
-                label: const Text('Gallery')),
+                    onPressed: () => _upload('gallery'),
+                    icon: const Icon(Icons.library_add),
+                    label: const Text('Gallery')),
           ])
         ],
       ),
@@ -121,100 +122,103 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     var currentUser = FirebaseAuth.instance.currentUser;
-
+   
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     return FutureBuilder<DocumentSnapshot>(
-        future: users.doc(currentUser!.uid).get(),
-        builder:
-            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text("Something went wrong");
-          }
+      future: users.doc(currentUser!.uid).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        
+        if (snapshot.hasError) {
+          return const Text("Something went wrong");
+        }
 
-          if (snapshot.hasData && !snapshot.data!.exists) {
-            return const Text("Document does not exist");
-          }
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return const Text("Document does not exist");
+        }
 
-          if (snapshot.connectionState == ConnectionState.done) {
-            Map<String, dynamic> data =
-                snapshot.data!.data() as Map<String, dynamic>;
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
 
-            return Scaffold(
-              body: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        // ElevatedButton.icon(
-                        //     onPressed: () => _upload('camera'),
-                        //     icon: const Icon(Icons.camera),
-                        //     label: const Text('camera')),
-                        // ElevatedButton.icon(
-                        //     onPressed: () => _upload('gallery'),
-                        //     icon: const Icon(Icons.library_add),
-                        //     label: const Text('Gallery')),
-                      ],
-                    ),
-                    Expanded(
-                      child: FutureBuilder(
-                        future: _loadImages(),
-                        builder: (context,
-                            AsyncSnapshot<List<Map<String, dynamic>>>
-                                snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            return ListView.builder(
-                              itemCount: snapshot.data?.length ?? 0,
-                              itemBuilder: (context, index) {
-                                final Map<String, dynamic> image =
-                                    snapshot.data![index];
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                // ElevatedButton.icon(
+                //     onPressed: () => _upload('camera'),
+                //     icon: const Icon(Icons.camera),
+                //     label: const Text('camera')),
+                // ElevatedButton.icon(
+                //     onPressed: () => _upload('gallery'),
+                //     icon: const Icon(Icons.library_add),
+                //     label: const Text('Gallery')),
+              ],
+            ),
+            Expanded(
+              child: FutureBuilder(
+                future: _loadImages(),
+                builder: (context,
+                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return ListView.builder(
+                      itemCount: snapshot.data?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        final Map<String, dynamic> image =
+                            snapshot.data![index];
 
-                                return Card(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: ListTile(
-                                    dense: false,
-                                    leading: Image.network(image['url']),
-                                    title: Text(image['uploaded_by']),
-                                    subtitle: Text(image['description']),
-                                    trailing: IconButton(
-                                      onPressed: () => _delete(image['path']),
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          }
+                        return Card(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          child: ListTile(
+                            dense: false,
+                            leading: Image.network(image['url']),
+                            title: Text(image['uploaded_by']),
+                            subtitle: Text(image['description']),
+                            trailing: IconButton(
+                              onPressed: () => _delete(image['path']),
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
 
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
-            );
-          } else {
-            return CircularProgressIndicator();
-          }
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  else {
+    return CircularProgressIndicator();
+  } 
+          
+  
+
+ 
 
 //   String selectedCourse = '';
 //   String selectedSemester = '';
-
+  
 //   XFile? _imageFile;
 //   final ImagePicker _picker = ImagePicker();
 //   @override
 //   Widget build(BuildContext context) {
 //     var currentUser = FirebaseAuth.instance.currentUser;
-
+   
 //     CollectionReference users = FirebaseFirestore.instance.collection('users');
 //     return FutureBuilder<DocumentSnapshot>(
 //       future: users.doc(currentUser!.uid).get(),
@@ -314,7 +318,7 @@ class _ProfilePageState extends State<ProfilePage> {
 //             style: Theme.of(context).textTheme.headline5
 //           ),
 //         ),
-//         const SizedBox(height: 20),
+//         const SizedBox(height: 20),   
 // //CAMPO DE ESCOLHA DO PERÍODO
 
 //         DecoratedBox(
@@ -349,7 +353,7 @@ class _ProfilePageState extends State<ProfilePage> {
 //         ),
 
 //             ],
-
+            
 //           )));
 // }
 //         return const Center(
@@ -432,6 +436,8 @@ class _ProfilePageState extends State<ProfilePage> {
 //       _imageFile = pickedFile;
 //     });
 //   }
-        });
+  
+}
+    );
   }
 }
