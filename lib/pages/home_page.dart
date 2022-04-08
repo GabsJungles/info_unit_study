@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_post_model.dart';
 import 'package:info_unity_study/widgets/criar_post.dart';
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           CriarPost(),
           SizedBox(height: 40),
-          CardPost(text: 'CALENDÁRIO')
+          CardPost(text: ''),
         ],
       ),
     );
