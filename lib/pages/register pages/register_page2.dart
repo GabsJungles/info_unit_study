@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/pages/register%20pages/register_page3.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
-import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
 class RegisterPage2 extends StatefulWidget {
   final String email;
@@ -46,10 +45,8 @@ class _RegisterPage2State extends State<RegisterPage2>
         ),
 //TEXTO ABAIXO DA LOGO DA TELA
 
-        Container(
-          child: Text("INFO UNITY STUDY",
-              style: Theme.of(context).textTheme.headline1),
-        ),
+        Text("INFO UNITY STUDY",
+            style: Theme.of(context).textTheme.headline1),
 
         const SizedBox(
           height: 30,

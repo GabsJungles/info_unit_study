@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:info_unity_study/pages/home_page.dart';
 import 'package:info_unity_study/pages/profile_page.dart';
-import 'package:info_unity_study/widgets/custom_buttons1.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,11 +14,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
-      final emailController = TextEditingController();
-      final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
-  void dispose(){
+  void dispose() {
     emailController.dispose();
     passwordController.dispose();
 
@@ -40,26 +38,21 @@ class _LoginPageState extends State<LoginPage>
               width: 510,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
-                image:
-                    DecorationImage(
-                      image: AssetImage('lib/images/logo.final.gif'),
-                    fit: BoxFit.contain,
-                    ),
-                    shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('lib/images/logo.final.gif'),
+                  fit: BoxFit.contain,
+                ),
+                shape: BoxShape.circle,
               ),
             ),
 
-const SizedBox(
-  height: 20,
-
-
-),
+            const SizedBox(
+              height: 20,
+            ),
 //TEXTO ABAIXO DA FOTO DA TELA INICIAL
 
-            Container(
-              child: Text("INFO UNITY STUDY",
-                  style: Theme.of(context).textTheme.headline1),
-            ),
+            Text("INFO UNITY STUDY",
+                style: Theme.of(context).textTheme.headline1),
 
             const SizedBox(
               height: 30,
@@ -67,48 +60,43 @@ const SizedBox(
 
 //CAMPO DE PREENCHIMENTO DE EMAIL
 
-Container(
-  alignment: Alignment.bottomLeft,
-  child: Text('E-MAIL',
-  style: Theme.of(context).textTheme.headline3),
-),
+            Container(
+              alignment: Alignment.bottomLeft,
+              child:
+                  Text('E-MAIL', style: Theme.of(context).textTheme.headline3),
+            ),
 
-               Padding(
-                    padding:
-                         EdgeInsets.symmetric(horizontal: 6, vertical: 16),
-                    child: TextField(
-                      controller: emailController,
-                        decoration:  InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: 'Digite seu E-mail'
-                        ))),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                child: TextField(
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        border: OutlineInputBorder(),
+                        hintText: 'Digite seu E-mail'))),
 
 //CAMPO DE PREENCHIMENTO DE SENHA
 
-Container(
-  alignment: Alignment.bottomLeft,
-  child: Text('SENHA',
-  style: Theme.of(context).textTheme.headline3),
-),
+            Container(
+              alignment: Alignment.bottomLeft,
+              child:
+                  Text('SENHA', style: Theme.of(context).textTheme.headline3),
+            ),
 
-               Padding(
-                    padding:
-                         EdgeInsets.symmetric(horizontal: 6, vertical: 16),
-                    child: TextField(
-                      controller: passwordController,
-                        decoration:  InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: 'Digite sua Senha'
-                        ))),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                child: TextField(
+                    controller: passwordController,
+                    decoration: const InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        border: OutlineInputBorder(),
+                        hintText: 'Digite sua Senha'))),
 
-
-const SizedBox(
-  height: 20,
-),
+            const SizedBox(
+              height: 20,
+            ),
 
 //BOTÃO DE LOGIN
 
@@ -118,11 +106,12 @@ const SizedBox(
           ]),
     );
   }
-  Future signIn() async{
+
+  Future signIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim());
-      Navigator.push(context, 
-      MaterialPageRoute(builder: ((context) => ProfilePage())));
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
+    Navigator.push(
+        context, MaterialPageRoute(builder: ((context) => const ProfilePage())));
   }
 }

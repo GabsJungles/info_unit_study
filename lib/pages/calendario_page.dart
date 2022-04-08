@@ -5,7 +5,7 @@ import 'package:info_unity_study/widgets/custom_appbar.dart';
 import 'package:info_unity_study/widgets/custom_drawer.dart';
 
 class CalendarioPage extends StatefulWidget {
-  const CalendarioPage({ Key? key }) : super(key: key);
+  const CalendarioPage({Key? key}) : super(key: key);
 
   @override
   State<CalendarioPage> createState() => _CalendarioPageState();
@@ -14,15 +14,11 @@ class CalendarioPage extends StatefulWidget {
 class _CalendarioPageState extends State<CalendarioPage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      endDrawer: CustomDrawer(),
-      appBar: CustomAppBar(title: 'CALENDÁRIO'),
+    return Scaffold(
+      endDrawer: const CustomDrawer(),
+      appBar: const CustomAppBar(title: 'CALENDÁRIO'),
       body: Column(
-        children: [
-          CriarPost(),
-          SizedBox(height: 40),
-          CardPost(text: 'teste')
-        ],
+        children: const [CriarPost(), SizedBox(height: 40), CardPost(text: 'teste')],
       ),
     );
   }

@@ -35,10 +35,8 @@ class _InitialPageState extends State<InitialPage>
 
 //TEXTO ABAIXO DA FOTO DA TELA INICIAL
 
-            Container(
-              child: Text("INFO UNITY STUDY",
-                  style: Theme.of(context).textTheme.headline1),
-            ),
+            Text("INFO UNITY STUDY",
+                style: Theme.of(context).textTheme.headline1),
 
             const SizedBox(
               height: 70,
@@ -49,7 +47,7 @@ class _InitialPageState extends State<InitialPage>
             CustomButtons1(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => RegisterPage1())));
+                    MaterialPageRoute(builder: ((context) => const RegisterPage1())));
               },
               text: "REGISTRE-SE",
             ),
@@ -62,8 +60,8 @@ class _InitialPageState extends State<InitialPage>
 
             CustomButtons2(
               onPressed: () {
-                              Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => LoginPage())));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => const LoginPage())));
               },
             )
           ]),

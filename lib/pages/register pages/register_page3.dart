@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/pages/home_page.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
-import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
 class RegisterPage3 extends StatefulWidget {
   final String email;
@@ -51,10 +50,8 @@ class _RegisterPage3State extends State<RegisterPage3>
         ),
 //TEXTO ABAIXO DA LOGO DA TELA
 
-        Container(
-          child: Text("INFO UNITY STUDY",
-              style: Theme.of(context).textTheme.headline1),
-        ),
+        Text("INFO UNITY STUDY",
+            style: Theme.of(context).textTheme.headline1),
 
         const SizedBox(
           height: 30,
@@ -63,7 +60,7 @@ class _RegisterPage3State extends State<RegisterPage3>
 //CAMPO DE ESCOLHA DO CURSO
 
         DecoratedBox(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
           ),
@@ -122,7 +119,7 @@ class _RegisterPage3State extends State<RegisterPage3>
 //CAMPO DE ESCOLHA DO PERÍODO
 
         DecoratedBox(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
           ),
@@ -155,12 +152,12 @@ class _RegisterPage3State extends State<RegisterPage3>
 
         CustomButtons1(
           text: "PRÓXIMO",
-          onPressed: () async{
+          onPressed: () async {
             await signUp();
             await saveCredentials(widget.email, widget.password, widget.name,
                 widget.nickname, selectedCourse, selectedSemester);
             Navigator.push(
-                context, MaterialPageRoute(builder: ((context) => HomePage())));
+                context, MaterialPageRoute(builder: ((context) => const HomePage())));
           },
         )
       ]),
@@ -171,28 +168,22 @@ class _RegisterPage3State extends State<RegisterPage3>
       String nickname, String course, String semester) async {
     final firestore = FirebaseFirestore.instance;
     var currentUser = FirebaseAuth.instance.currentUser;
-    if(currentUser?.uid != null){
-    await firestore.collection("users").doc(currentUser!.uid).set({
-      "name": name,
-      "nickname": nickname,
-      "email": email,
-      "password": password,
-      "course": course,
-      "semester": semester,
-    });
+    if (currentUser?.uid != null) {
+      await firestore.collection("users").doc(currentUser!.uid).set({
+        "name": name,
+        "nickname": nickname,
+        "email": email,
+        "password": password,
+        "course": course,
+        "semester": semester,
+      });
     }
   }
 
   Future signUp() async {
-    
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: widget.email,
-        password: widget.password);
+        email: widget.email, password: widget.password);
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: ((context) => HomePage())
-            )
-          );
+        context, MaterialPageRoute(builder: ((context) => const HomePage())));
   }
 }

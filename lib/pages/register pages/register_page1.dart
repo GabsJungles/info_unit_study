@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/pages/register%20pages/register_page2.dart';
 import 'package:info_unity_study/widgets/custom_buttons1.dart';
-import 'package:info_unity_study/widgets/custom_buttons2.dart';
 
 class RegisterPage1 extends StatefulWidget {
   const RegisterPage1({
@@ -43,10 +42,8 @@ class _RegisterPage1State extends State<RegisterPage1>
             ),
 //TEXTO ABAIXO DA LOGO DA TELA
 
-            Container(
-              child: Text("INFO UNITY STUDY",
-                  style: Theme.of(context).textTheme.headline1),
-            ),
+            Text("INFO UNITY STUDY",
+                style: Theme.of(context).textTheme.headline1),
 
             const SizedBox(
               height: 30,
@@ -61,7 +58,7 @@ class _RegisterPage1State extends State<RegisterPage1>
             ),
 
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
                 child: TextField(
                     controller: emailController,
                     decoration: const InputDecoration(
@@ -79,10 +76,10 @@ class _RegisterPage1State extends State<RegisterPage1>
             ),
 
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
                 child: TextField(
                     controller: passwordController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
                         border: OutlineInputBorder(),
@@ -95,7 +92,7 @@ class _RegisterPage1State extends State<RegisterPage1>
             ),
 
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
                 child: TextField(
                     controller: passwordController,
                     decoration: const InputDecoration(
@@ -108,31 +105,31 @@ class _RegisterPage1State extends State<RegisterPage1>
 
             CustomButtons1(
               text: "PRÓXIMO",
-              onPressed: (){
+              onPressed: () {
                 Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: ((context) => RegisterPage2(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      )),
-                ));
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => RegisterPage2(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          )),
+                    ));
               },
             )
           ]),
     );
-    
   }
-   Future signUp() async{
+
+  Future signUp() async {
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim());
-      Navigator.push(context, 
-      MaterialPageRoute(builder: ((context) => RegisterPage2(
         email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      ))));
+        password: passwordController.text.trim());
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: ((context) => RegisterPage2(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
+                ))));
   }
-
-
 }

@@ -30,7 +30,9 @@ class CustomButtons1 extends StatelessWidget {
           height: 45,
           width: 270,
           alignment: Alignment.center,
-          child: Text(text,            textAlign: TextAlign.center,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline1,
           ),
         ),
