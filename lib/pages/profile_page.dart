@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -66,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
     'Relações Públicas',
     'Sistemas de Informação',
   ];
-  bool? isLoading;
+
   final List<String> periodo = [
     '1° período',
     '2° período',
@@ -307,7 +306,9 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () async {
                 final pickedFile =
                     await _controller.pickImage(ImageSource.camera);
-                await _controller.uploadImage(_imageFile!);
+                    if(pickedFile != null){
+                await _controller.uploadImage(pickedFile);
+                }
                 setState(() {
                   _imageFile = pickedFile;
                 });
@@ -323,8 +324,9 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () async {
                 final pickedFile =
                     await _controller.pickImage(ImageSource.gallery);
-                await _controller.uploadImage(_imageFile!);
-
+                if(pickedFile != null){
+                await _controller.uploadImage(pickedFile);
+                }
                 setState(() {
                   _imageFile = pickedFile;
                 });
@@ -369,40 +371,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
     );
   }
-
-  // CollectionReference users = FirebaseFirestore.instance.collection('users');
-  // var currentUser = FirebaseAuth.instance.currentUser;
-  // Widget getUserCourse() {
-  //   return FutureBuilder<DocumentSnapshot>(
-  //     future: users.doc(currentUser!.uid).get(),
-  //     builder:
-  //         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-  //       if (snapshot.hasError) {
-  //         return Text("Something went wrong");
-  //       }
-
-  //       if (snapshot.hasData && !snapshot.data!.exists) {
-  //         return Text("Document does not exist");
-  //       }
-
-  //       if (snapshot.connectionState == ConnectionState.done) {
-  //         Map<String, dynamic> data =
-  //             snapshot.data!.data() as Map<String, dynamic>;
-  //         return Text("${data['course']}");
-  //       }
-
-  //       return CircularProgressIndicator();
-  //     },
-  //   );
-  // }
-
-  // Future<void> getUserCourse(String semester) async {
-  //   final firestore = FirebaseFirestore.instance;
-  //   var currentUser = FirebaseAuth.instance.currentUser;
-  //   if (currentUser?.uid != null) {
-  //     await firestore.collection("users").doc(currentUser!.uid).get();
-  //   }
-  // }
 
   Future<void> updateCourse(String course) async {
     final firestore = FirebaseFirestore.instance;

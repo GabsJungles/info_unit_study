@@ -12,10 +12,10 @@ class ImageController {
 
   Future<void> uploadImage(File fileToUpload) async {
     final storageRef = FirebaseStorage.instance.ref();
-    final Ref = storageRef.child("images");
-    final ImagesRef = Ref.child("images/invitations.jpg");
+    final ref = storageRef.child("images");
+    final imagesRef = ref.child("images/invitations.jpg");
     try {
-      await ImagesRef.putFile(fileToUpload);
+      await imagesRef.putFile(fileToUpload);
     } on FirebaseException catch (e) {
       print('Não foi possível salvar a foto: ${e.code}');
     }
