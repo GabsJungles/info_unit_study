@@ -113,6 +113,7 @@ const SizedBox(
 //BOTÃO DE LOGIN
 
             CustomButtons2(
+              text: 'LOGIN',
               onPressed: signIn,
             )
           ]),
