@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_post_model.dart';
 import 'package:info_unity_study/widgets/criar_post.dart';
@@ -21,7 +22,7 @@ class _CalendarioPageState extends State<CalendarioPage> {
         children: [
           CriarPost(),
           SizedBox(height: 40),
-          CardPost(text: 'teste')
+          CardPost(postText: 'teste', userName: "teste2")
         ],
       ),
     );

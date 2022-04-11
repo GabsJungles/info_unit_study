@@ -1,10 +1,12 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_post_model.dart';
 import 'package:info_unity_study/widgets/criar_post.dart';
 import 'package:info_unity_study/widgets/custom_appbar.dart';
 import 'package:info_unity_study/widgets/custom_drawer.dart';
+import 'package:path/path.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           CriarPost(),
           SizedBox(height: 40),
-          CardPost(text: ''),
+          CardPost(postText: '', userName: '' ),
         ],
       ),
     );

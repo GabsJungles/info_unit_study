@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/config/theme.dart';
+import 'package:info_unity_study/pages/home_page.dart';
 import 'package:info_unity_study/pages/profile_page.dart';
 import 'package:info_unity_study/pages/login_page.dart';
 import 'package:info_unity_study/pages/profile_page.dart';
@@ -17,7 +18,7 @@ class MeuAplicativo extends StatelessWidget {
         title: 'Info Unity Study',
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: ProfilePage(),
+        home: HomePage(),
       );
   }
 }
