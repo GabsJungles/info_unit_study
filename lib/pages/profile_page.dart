@@ -169,10 +169,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(30.0),
-                                  bottomLeft: Radius.circular(30.0),
-                                  topLeft: Radius.circular(30.0),
-                                  bottomRight: Radius.circular(30.0))),
+                                  topRight: Radius.circular(10.0),
+                                  bottomLeft: Radius.circular(10.0),
+                                  topLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0))),
                           child:
                           DropdownButton<String>(
                             selectedItemBuilder: (_) {
@@ -190,7 +190,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             value: value,
                             icon: const CircleAvatar(
                               radius: 12,
-                              backgroundColor: Colors.black,
+                              backgroundColor: Colors.white,
                               child: Icon(Icons.arrow_drop_down,
                                   color: Color(0xFF8F00FF)),
                             ),
@@ -223,10 +223,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(20.0),
-                                  bottomLeft: Radius.circular(20.0),
-                                  topLeft: Radius.circular(20.0),
-                                  bottomRight: Radius.circular(20.0))),
+                                  topRight: Radius.circular(10.0),
+                                  bottomLeft: Radius.circular(10.0),
+                                  topLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0))),
                           child: DropdownButton<String>(
                             selectedItemBuilder: (_) {
                               return periodo
@@ -242,7 +242,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             value: value2,
                             icon: const CircleAvatar(
                               radius: 12,
-                              backgroundColor: Colors.black,
+                              backgroundColor: Colors.white,
                               child: Icon(Icons.arrow_drop_down,
                                   color: Color(0xFF8F00FF)),
                             ),
