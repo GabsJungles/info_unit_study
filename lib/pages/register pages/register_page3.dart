@@ -135,10 +135,10 @@ class _RegisterPage3State extends State<RegisterPage3>
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30.0),
-                    bottomLeft: Radius.circular(30.0),
-                    topLeft: Radius.circular(30.0),
-                    bottomRight: Radius.circular(30.0))),
+                    topRight: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0),
+                    topLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0))),
             child: DropdownButton<String>(
               selectedItemBuilder: (_) {
                 return cursos
@@ -154,7 +154,7 @@ class _RegisterPage3State extends State<RegisterPage3>
               value: value,
               icon: const CircleAvatar(
                 radius: 12,
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.white,
                 child: Icon(Icons.arrow_drop_down, color: Color(0xFF8F00FF)),
               ),
               items: cursos.map((String value) {
@@ -176,64 +176,6 @@ class _RegisterPage3State extends State<RegisterPage3>
               },
             ),
           ),
-
-          // DecoratedBox(
-          //   decoration: BoxDecoration(
-          //     shape: BoxShape.rectangle,
-          //     color: Colors.white,
-
-          //   ),
-          //   child: DropdownButton<String>(
-          //     items: <String>[
-          //       'Administração',
-          //       'Arquitetura e Urbanismo',
-          //       'Análise e Desenvolvimento de Sistemas',
-          //       'Biomedicina',
-          //       'Ciência da Computação',
-          //       'Ciências Contábeis',
-          //       'Cinema e Audiovisual',
-          //       'Comércio Exterior',
-          //       'Criminologia',
-          //       'Design',
-          //       "Design de Animação",
-          //       'Design de Interiores',
-          //       'Design Gráfico',
-          //       'Direito',
-          //       'Engenharia Civil',
-          //       'Engenharia da Computação',
-          //       'Engenharia de Controle e Automação',
-          //       'Engenharia de Produção',
-          //       'Engenharia Elétrica',
-          //       'Engenharia Mecânica',
-          //       'Engenharia Química',
-          //       'Fabricação Mecânica',
-          //       'Farmácia',
-          //       'Fisioterapia',
-          //       'Gestão da Tecnologia da Informação',
-          //       'Jogos Digitais',
-          //       'Jornalismo',
-          //       'Marketing',
-          //       'Mecatrônica Industrial',
-          //       'Medicina Veterinária',
-          //       'Nutrição',
-          //       'Odontologia',
-          //       'Pedagogia',
-          //       'Produção Audiovisual',
-          //       'Psicologia',
-          //       'Publucidade e Propaganda',
-          //       'Relações Internacionais',
-          //       'Relações Públicas',
-          //       'Sistemas de Informação',
-          //     ].map((String value) {
-          //       return DropdownMenuItem<String>(value: value, child: Text(value));
-          //     }).toList(),
-          //     onChanged: (value) {
-          //       if (value != null) {
-          //         selectedCourse = value;
-          //       }
-          //     },
-          //   ),
-          // ),
 
           SizedBox(height: 30),
 
@@ -273,7 +215,7 @@ class _RegisterPage3State extends State<RegisterPage3>
               value: value2,
               icon: const CircleAvatar(
                 radius: 12,
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.white,
                 child: Icon(Icons.arrow_drop_down, color: Color(0xFF8F00FF)),
               ),
               items: periodo.map((String value2) {
@@ -295,36 +237,6 @@ class _RegisterPage3State extends State<RegisterPage3>
               },
             ),
           ),
-
-          // DecoratedBox(
-          //   decoration: BoxDecoration(
-          //     shape: BoxShape.rectangle,
-          //     color: Colors.white,
-          //   ),
-          //   child: DropdownButton<String>(
-          //     items: <String>[
-          //       "1",
-          //       "2",
-          //       "3",
-          //       "4",
-          //       "5",
-          //       "6",
-          //       "7",
-          //       "8",
-          //       "9",
-          //       "10",
-          //       "11",
-          //       "12"
-          //     ].map((String value) {
-          //       return DropdownMenuItem<String>(value: value, child: Text(value));
-          //     }).toList(),
-          //     onChanged: (value) {
-          //       if (value != null) {
-          //         selectedSemester = value;
-          //       }
-          //     },
-          //   ),
-          // ),
 
           SizedBox(height: 100),
 
