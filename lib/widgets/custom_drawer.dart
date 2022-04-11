@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:info_unity_study/pages/calendario_page.dart';
+import 'package:info_unity_study/pages/profile_page.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -64,7 +65,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     decoration: BoxDecoration(
                       color: Color(0xFF420074),
                     ),
-                    child: CircleAvatar()
+                    child: InkWell(
+                      onTap: () 
+                      {
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => ProfilePage()))
+                      );
+                  },
+                      child: CircleAvatar()
+                    ),
                   ),
                   const ListTile(title: Text('')),
                   //CALENDARIO

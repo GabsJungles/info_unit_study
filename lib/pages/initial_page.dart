@@ -61,6 +61,7 @@ class _InitialPageState extends State<InitialPage>
 //BOTÃO DE LOGIN
 
             CustomButtons2(
+              text: 'LOGIN',
               onPressed: () {
                               Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => LoginPage())));

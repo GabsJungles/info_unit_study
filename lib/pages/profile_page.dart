@@ -1,21 +1,19 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:info_unity_study/pages/login_page.dart';
+import 'package:info_unity_study/widgets/custom_buttons2.dart';
 import 'package:info_unity_study/widgets/image_controller.dart';
-import 'package:path/path.dart' as path;
 
 class ProfilePage extends StatefulWidget {
   final String? selectedCourse;
   final String? selectedSemester;
-  const ProfilePage({
-    Key? key,
-    this.selectedCourse,
-    this.selectedSemester
-  }) : super(key: key);
+  const ProfilePage({Key? key, this.selectedCourse, this.selectedSemester})
+      : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -68,8 +66,56 @@ class _ProfilePageState extends State<ProfilePage> {
     'Relações Públicas',
     'Sistemas de Informação',
   ];
-  String? value = 'Administração';
-  
+  bool? isLoading;
+  final List<String> periodo = [
+    '1° período',
+    '2° período',
+    '3° período',
+    '4° período',
+    '5° período',
+    '6° período',
+    '7° período',
+    '8° período',
+    '9° período',
+    '10° período',
+    '11° período',
+    '12° período',
+  ];
+  String? value2;
+  String? value;
+  @override
+  void initState() {
+    super.initState();
+    getCourse();
+    getSemester();
+  }
+
+  dynamic data;
+
+  Future<void> getCourse() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        value = data['course'];
+      });
+    });
+  }
+
+  Future<void> getSemester() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        value2 = data['semester'];
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var currentUser = FirebaseAuth.instance.currentUser;
@@ -120,7 +166,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         Text("${data['email']}",
                             style: Theme.of(context).textTheme.headline2),
                         const SizedBox(height: 20),
-
                         Container(
                           decoration: const BoxDecoration(
                               color: Colors.white,
@@ -129,7 +174,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   bottomLeft: Radius.circular(30.0),
                                   topLeft: Radius.circular(30.0),
                                   bottomRight: Radius.circular(30.0))),
-                          child: DropdownButton<String>(
+                          child:
+                          DropdownButton<String>(
                             selectedItemBuilder: (_) {
                               return cursos
                                   .map((e) => Container(
@@ -158,52 +204,79 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               );
                             }).toList(),
-                            onChanged: (_) {
+                            onChanged: (_) async {
                               setState(() {
                                 value = _;
                               });
                               if (value != null) {
                                 selectedCourse = value;
                               }
+                              await updateCourse(selectedCourse!);
                             },
                           ),
                         ),
 
                         const SizedBox(height: 20),
+
 //CAMPO DE ESCOLHA DO PERÍODO
 
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                        Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(20.0),
+                                  bottomLeft: Radius.circular(20.0),
+                                  topLeft: Radius.circular(20.0),
+                                  bottomRight: Radius.circular(20.0))),
                           child: DropdownButton<String>(
-                            items: <String>[
-                              "1",
-                              "2",
-                              "3",
-                              "4",
-                              "5",
-                              "6",
-                              "7",
-                              "8",
-                              "9",
-                              "10",
-                              "11",
-                              "12"
-                            ].map((String value) {
-                              return DropdownMenuItem<String>(
-                                  value: value, child: Text(value));
-                            }).toList(),
-                            onChanged: (value) {
-                              if (value != null) {
-                                selectedSemester = value;
-                              }
+                            selectedItemBuilder: (_) {
+                              return periodo
+                                  .map((e) => Container(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          e,
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ))
+                                  .toList();
                             },
-                            style: Theme.of(context).textTheme.headline5,
+                            value: value2,
+                            icon: const CircleAvatar(
+                              radius: 12,
+                              backgroundColor: Colors.black,
+                              child: Icon(Icons.arrow_drop_down,
+                                  color: Color(0xFF8F00FF)),
+                            ),
+                            items: periodo.map((String value2) {
+                              return DropdownMenuItem<String>(
+                                value: value2,
+                                child: Text(
+                                  value2,
+                                  style: const TextStyle(color: Colors.black54),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (_) async {
+                              setState(() {
+                                value2 = _;
+                              });
+                              if (value != null) {
+                                selectedSemester = value2;
+                              }
+                              await updateSemester(selectedSemester!);
+                            },
                           ),
                         ),
+                        SizedBox(height: 150),
+
+                        CustomButtons2(
+                            text: 'SAIR',
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => LoginPage())));
+                            })
                       ],
                     )));
           }
@@ -296,12 +369,56 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
     );
   }
-  Future<void> updateCredentials(String course, String semester) async {
+
+  // CollectionReference users = FirebaseFirestore.instance.collection('users');
+  // var currentUser = FirebaseAuth.instance.currentUser;
+  // Widget getUserCourse() {
+  //   return FutureBuilder<DocumentSnapshot>(
+  //     future: users.doc(currentUser!.uid).get(),
+  //     builder:
+  //         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+  //       if (snapshot.hasError) {
+  //         return Text("Something went wrong");
+  //       }
+
+  //       if (snapshot.hasData && !snapshot.data!.exists) {
+  //         return Text("Document does not exist");
+  //       }
+
+  //       if (snapshot.connectionState == ConnectionState.done) {
+  //         Map<String, dynamic> data =
+  //             snapshot.data!.data() as Map<String, dynamic>;
+  //         return Text("${data['course']}");
+  //       }
+
+  //       return CircularProgressIndicator();
+  //     },
+  //   );
+  // }
+
+  // Future<void> getUserCourse(String semester) async {
+  //   final firestore = FirebaseFirestore.instance;
+  //   var currentUser = FirebaseAuth.instance.currentUser;
+  //   if (currentUser?.uid != null) {
+  //     await firestore.collection("users").doc(currentUser!.uid).get();
+  //   }
+  // }
+
+  Future<void> updateCourse(String course) async {
     final firestore = FirebaseFirestore.instance;
     var currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser?.uid != null) {
       await firestore.collection("users").doc(currentUser!.uid).update({
         "course": course,
+      });
+    }
+  }
+
+  Future<void> updateSemester(String semester) async {
+    final firestore = FirebaseFirestore.instance;
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser?.uid != null) {
+      await firestore.collection("users").doc(currentUser!.uid).update({
         "semester": semester,
       });
     }

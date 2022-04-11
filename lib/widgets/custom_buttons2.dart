@@ -4,9 +4,11 @@ import 'package:info_unity_study/pages/login_page.dart';
 
 class CustomButtons2 extends StatelessWidget {
   final Function() onPressed;
+  final String text;
   const CustomButtons2({
     Key? key,
     required this.onPressed,
+    required this.text,
   }) : super(key: key);
 
 //BOTÃO LOGIN
@@ -31,7 +33,7 @@ class CustomButtons2 extends StatelessWidget {
           width: 270,
           alignment: Alignment.center,
           child: Text(
-            "LOGIN",
+            text,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline1,
           ),
