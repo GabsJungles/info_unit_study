@@ -1,17 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_post_model.dart';
+import 'package:info_unity_study/models/format_time.dart';
+import 'package:intl/intl.dart';
 
 class CriarPost extends StatefulWidget {
-
-
-  const CriarPost({ Key? key}) : super(key: key);
+  const CriarPost({ Key? key,
+  }) : super(key: key);
 
   @override
   State<CriarPost> createState() => _CriarPostState();
 }
 
 class _CriarPostState extends State<CriarPost> {
+   @override
+  void initState() {
+    super.initState();
+    getNickname();
+  }
+  String? nickname;
 final storeMessage = FirebaseFirestore.instance;
 TextEditingController post = TextEditingController();
 
@@ -35,7 +43,8 @@ TextEditingController post = TextEditingController();
                           if (post.text.isNotEmpty) {
                             storeMessage.collection("post").doc().set({
                               "post": post.text.trim(),
-                              "time": DateTime.now()
+                              "time": DateTime.now(),
+                              "nickname": nickname,
                             });
                             post.clear();
                           }
@@ -63,42 +72,20 @@ TextEditingController post = TextEditingController();
             ),
       ],
     );
+
   }
+
+  dynamic data;
+Future<void> getNickname() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        nickname = data['nickname'];
+      });
+    });
+  }
+
 }
-
-// class ShowMessages extends StatelessWidget {
-// String? text;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamBuilder<QuerySnapshot>(
-//       stream: FirebaseFirestore.instance
-//           .collection("post")
-//           .orderBy("time")
-//           .snapshots(),
-//       builder: (context, AsyncSnapshot snapshot) {
-//         if (!snapshot.hasData) {
-//           return const Center(
-//             child: CircularProgressIndicator(),
-//           );
-//         }
-//         return ListView.builder(
-//             itemCount: snapshot.data!.docs.length,
-//             shrinkWrap: true,
-//             primary: true,
-//             physics: ScrollPhysics(),
-//             itemBuilder: (context, i) {
-//               QueryDocumentSnapshot x = snapshot.data!.docs[i];
-//               return ListTile(
-//                   title: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.end,
-//                 children: [
-//                    Text(x['post'],
-//                           style: TextStyle(color: Colors.black))
-//                 ],
-//               ));
-//             });
-//       },
-//     );
-//   }
-// }
