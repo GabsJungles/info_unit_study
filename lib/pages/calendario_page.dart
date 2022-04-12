@@ -21,7 +21,7 @@ class _CalendarioPageState extends State<CalendarioPage> {
         children: [
           CriarPost(),
           SizedBox(height: 40),
-          CardPost(text: 'teste')
+          // CardPost(text: 'teste')
         ],
       ),
     );
