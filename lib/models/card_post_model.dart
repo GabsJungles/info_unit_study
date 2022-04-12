@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:comment_box/comment/comment.dart';
 
 class CardPost extends StatefulWidget {
   final String text;
@@ -43,10 +44,6 @@ class _CardPostState extends State<CardPost> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  widget.text,
-                                  style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.black)
-                                ),
                               ],
                             ),
                           
@@ -58,3 +55,4 @@ class _CardPostState extends State<CardPost> {
               );
   }
 }
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class CriarPost extends StatefulWidget {
   const CriarPost({ Key? key }) : super(key: key);
 
@@ -19,7 +20,6 @@ class _CriarPostState extends State<CriarPost> {
           height: 80,
           child: TextField(
             decoration: InputDecoration(
-              hintText: 'Qual é a boa?',
               hintStyle: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.black),
               filled: true,
               fillColor: Colors.white,
