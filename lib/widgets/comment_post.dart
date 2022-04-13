@@ -21,21 +21,35 @@ class _CommentPostState extends State<CommentPost> {
   late String comments = ' ';
 
   sendComment() async {
-    final isValid = _formKey.currentState!.validate();
-    final name = user!.displayName;
-
-    var res = await userRef.where('userid', isEqualTo: user!.uid).get();
-
     _formKey.currentState!.save();
 
     var doc = userRef.doc('post');
     doc.set({
       'comment': comments,
+      'postId': UserId,
+    });
+    
+    var docComment = userRef.doc('comments');
+    doc.set({
+      'comment': comments,
+      'postId': UserId,
+      'nickname': nickname,
+      "id": docComment.id, 
     });
   }
 
   @override
+  void initState() {
+    super.initState();
+    getUserId();
+  }
+
+  String? UserId;
+  String? nickname;
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -74,5 +88,30 @@ class _CommentPostState extends State<CommentPost> {
         ],
       )),
     );
+  }
+
+  dynamic data;
+Future<void> getUserId() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("post").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        UserId = data['id'];
+      });
+    });
+  }
+
+Future<void> getNickname() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        nickname = data['nickname'];
+      });
+    });
   }
 }

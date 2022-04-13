@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/config/theme.dart';
+import 'package:info_unity_study/widgets/custom_buttonback.dart';
 import 'package:info_unity_study/widgets/search_bar.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -31,6 +32,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       centerTitle: true, 
      actions: [
+       
             Builder(
               builder: ((context) {
                 return IconButton(
@@ -64,6 +66,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       centerTitle: true, 
       backgroundColor: Colors.black,
+      leading: ButtonBack(),
      actions: [
             Builder(
               builder: ((context) {
@@ -87,6 +90,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                     shape: BoxShape.circle),
                   ),
                   const SizedBox(height: 0),
+  
               Text(title, style: Theme.of(context).textTheme.headline3),
               SearchBar(),
             ],

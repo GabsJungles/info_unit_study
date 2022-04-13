@@ -40,12 +40,16 @@ TextEditingController post = TextEditingController();
                 controller: post,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (post.text.isNotEmpty) {
-                            storeMessage.collection("post").doc().set({
+                            final postDoc = storeMessage.collection("post").doc();
+                            await postDoc.set({
                               "post": post.text.trim(),
                               "time": DateTime.now(),
                               "nickname": nickname,
+                            });
+                            await postDoc.update({
+                              "id": postDoc.id,
                             });
                             post.clear();
                           }

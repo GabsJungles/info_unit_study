@@ -32,11 +32,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: CustomDrawer(),
-      appBar: CustomAppBar(title: 'INFO UNITY STUDY'),
+      endDrawer: const CustomDrawer(),
+      appBar: const CustomAppBar(title: 'INFO UNITY STUDY'),
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             CriarPost(),
             SizedBox(height: 40),
           ],
