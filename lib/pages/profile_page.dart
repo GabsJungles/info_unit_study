@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:info_unity_study/pages/login_page.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
-import 'package:info_unity_study/widgets/image_controller.dart';
+import 'package:info_unity_study/controllers/image_controller.dart';
 
 class ProfilePage extends StatefulWidget {
   final String? selectedCourse;
@@ -82,6 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
   ];
   String? value2;
   String? value;
+  
   @override
   void initState() {
     super.initState();

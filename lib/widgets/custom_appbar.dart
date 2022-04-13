@@ -14,7 +14,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    if(title == 'INFO UNITY STUDY'){
+      return AppBar(
       toolbarHeight: 170,
       flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -57,6 +58,41 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             ],
           ),
     );
+    } else{
+      return AppBar(
+      toolbarHeight: 170,
+      elevation: 0,
+      centerTitle: true, 
+      backgroundColor: Colors.black,
+     actions: [
+            Builder(
+              builder: ((context) {
+                return IconButton(
+                    icon: const Icon(Icons.align_horizontal_right),
+                    onPressed: () => Scaffold.of(context).openEndDrawer(),
+                  );
+              }),
+            )
+          ],
+          title: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                height: 50,
+                alignment: Alignment.bottomCenter,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('lib/images/logo.final.gif'),
+                    fit: BoxFit.contain),
+                    shape: BoxShape.circle),
+                  ),
+                  const SizedBox(height: 0),
+              Text(title, style: Theme.of(context).textTheme.headline3),
+              SearchBar(),
+            ],
+          ),
+    );
+    }
   }
 
   @override

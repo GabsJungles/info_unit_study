@@ -34,12 +34,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       endDrawer: CustomDrawer(),
       appBar: CustomAppBar(title: 'INFO UNITY STUDY'),
-      body: Column(
-        children: [
-          CriarPost(),
-          SizedBox(height: 40),
-          CardPost(text: ''),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CriarPost(),
+            SizedBox(height: 40),
+          ],
+        ),
       ),
     );
   }

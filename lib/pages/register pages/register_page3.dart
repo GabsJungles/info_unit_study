@@ -24,6 +24,7 @@ class RegisterPage3 extends StatefulWidget {
 
 class _RegisterPage3State extends State<RegisterPage3>
     with SingleTickerProviderStateMixin {
+      
   String? selectedCourse = '';
   String? selectedSemester = '';
   final List<String> cursos = [

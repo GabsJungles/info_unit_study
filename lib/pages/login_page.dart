@@ -31,23 +31,24 @@ class _LoginPageState extends State<LoginPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(),
-            Container(
-              height: 130,
-              width: 510,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                image:
-                    DecorationImage(
-                      image: AssetImage('lib/images/logo.final.gif'),
-                    fit: BoxFit.contain,
-                    ),
-                    shape: BoxShape.circle,
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(),
+              Container(
+                height: 130,
+                width: 510,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  image:
+                      DecorationImage(
+                        image: AssetImage('lib/images/logo.final.gif'),
+                      fit: BoxFit.contain,
+                      ),
+                      shape: BoxShape.circle,
+                ),
               ),
-            ),
 
 const SizedBox(
   height: 20,
@@ -56,14 +57,14 @@ const SizedBox(
 ),
 //TEXTO ABAIXO DA FOTO DA TELA INICIAL
 
-            Container(
-              child: Text("INFO UNITY STUDY",
-                  style: Theme.of(context).textTheme.headline1),
-            ),
+              Container(
+                child: Text("INFO UNITY STUDY",
+                    style: Theme.of(context).textTheme.headline1),
+              ),
 
-            const SizedBox(
-              height: 30,
-            ),
+              const SizedBox(
+                height: 30,
+              ),
 
 //CAMPO DE PREENCHIMENTO DE EMAIL
 
@@ -73,17 +74,17 @@ Container(
   style: Theme.of(context).textTheme.headline3),
 ),
 
-               Padding(
-                    padding:
-                         EdgeInsets.symmetric(horizontal: 6, vertical: 16),
-                    child: TextField(
-                      controller: emailController,
-                        decoration:  InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: 'Digite seu E-mail'
-                        ))),
+                 Padding(
+                      padding:
+                           EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                      child: TextField(
+                        controller: emailController,
+                          decoration:  InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(),
+                            hintText: 'Digite seu E-mail'
+                          ))),
 
 //CAMPO DE PREENCHIMENTO DE SENHA
 
@@ -93,17 +94,17 @@ Container(
   style: Theme.of(context).textTheme.headline3),
 ),
 
-               Padding(
-                    padding:
-                         EdgeInsets.symmetric(horizontal: 6, vertical: 16),
-                    child: TextField(
-                      controller: passwordController,
-                        decoration:  InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: 'Digite sua Senha'
-                        ))),
+                 Padding(
+                      padding:
+                           EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+                      child: TextField(
+                        controller: passwordController,
+                          decoration:  InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: OutlineInputBorder(),
+                            hintText: 'Digite sua Senha'
+                          ))),
 
 
 const SizedBox(
@@ -112,11 +113,12 @@ const SizedBox(
 
 //BOTÃO DE LOGIN
 
-            CustomButtons2(
-              text: 'LOGIN',
-              onPressed: signIn,
-            )
-          ]),
+              CustomButtons2(
+                text: 'LOGIN',
+                onPressed: signIn,
+              )
+            ]),
+      ),
     );
   }
   Future signIn() async{
@@ -124,6 +126,6 @@ const SizedBox(
       email: emailController.text.trim(),
       password: passwordController.text.trim());
       Navigator.push(context, 
-      MaterialPageRoute(builder: ((context) => ProfilePage())));
+      MaterialPageRoute(builder: ((context) => HomePage())));
   }
 }
