@@ -2,20 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/format_time.dart';
 
-class ShowMessages extends StatefulWidget {
-  const ShowMessages({Key? key,
-  }) : super(key: key);
-
-  @override
-  State<ShowMessages> createState() => _ShowMessagesState();
-}
-
-class _ShowMessagesState extends State<ShowMessages> {
+class CommentMessages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection("post")
+          .collection("comments")
           .orderBy("time")
           .snapshots(),
       builder: (context, snapshot) {
@@ -38,12 +30,9 @@ class _ShowMessagesState extends State<ShowMessages> {
                       children: [
                     Container(
                       decoration: const BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Color.fromARGB(255, 156, 155, 155),
-                            blurRadius: 10.0)
                       ]),
-                      width: 350,
-                      height: 150,
+                      width: 200,
+                      height: 100,
                       child: Card(
                         color: Colors.white,
                         elevation: 4,
@@ -62,23 +51,16 @@ class _ShowMessagesState extends State<ShowMessages> {
                                         .textTheme
                                         .headline2!
                                         .copyWith(color: Colors.black)),
-                                FormatDate(
-                                    time: (x['time'] as Timestamp).toDate())
                               ],
                             ),
                             const SizedBox(
                               height: 30,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(x['post'],
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline4!
-                                        .copyWith(color: Colors.black)),
-                              ],
-                            ),
+                            Text(x['comment'],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4!
+                                    .copyWith(color: Colors.black)),
                           ],
                         ),
                       ),
