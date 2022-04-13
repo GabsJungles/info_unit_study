@@ -19,16 +19,23 @@ class FormatDate extends StatefulWidget {
 class _FormatDateState extends State<FormatDate> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 25,
-      width: 100,
-      decoration: BoxDecoration(
-          color: Color(0xFF8F00FF), borderRadius: BorderRadius.circular(15.0)),
-      child: Center(
-          child: Text(
-        DateFormat("dd-MM | KK:mm").format(DateTime.now()),
-        style: Theme.of(context).textTheme.headline4,
-      )),
-    );
+    if (widget.time != null) {
+      return Container(
+        height: 25,
+        width: 100,
+        decoration: BoxDecoration(
+            color: const Color(0xFF8F00FF),
+            borderRadius: BorderRadius.circular(15.0)),
+        child: Center(
+            child: Text(
+          DateFormat("dd-MM | KK:mm").format(widget.time),
+          style: Theme.of(context).textTheme.headline4,
+        )),
+      );
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
   }
 }

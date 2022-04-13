@@ -10,14 +10,15 @@ class ShowMessages extends StatelessWidget {
           .collection("post")
           .orderBy("time")
           .snapshots(),
-      builder: (context, AsyncSnapshot snapshot) {
+      builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
         return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
+            reverse: true,
+            itemCount: snapshot.data!.docs.reversed.length,
             shrinkWrap: true,
             primary: true,
             physics: const ScrollPhysics(),
