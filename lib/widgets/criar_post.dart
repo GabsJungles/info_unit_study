@@ -33,7 +33,7 @@ TextEditingController post = TextEditingController();
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(20,20,20,0),
+              margin: const EdgeInsets.fromLTRB(20,20,20,0),
               width: 300,
               height: 80,
               child: TextField(
@@ -54,14 +54,14 @@ TextEditingController post = TextEditingController();
                             post.clear();
                           }
                         },
-                        icon: Icon(Icons.send, color: Colors.black)),
+                        icon: const Icon(Icons.send, color: Colors.black)),
                   hintText: 'Qual é a boa?',
                   hintStyle: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.black),
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   )
                 ),
                 
@@ -71,7 +71,7 @@ TextEditingController post = TextEditingController();
           ],
         ),
         SingleChildScrollView(
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               reverse: true,
               child: ShowMessages(),
             ),

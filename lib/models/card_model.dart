@@ -1,8 +1,12 @@
-class CardModel{
-  final String uid;
+class PostModel {
+  final String id;
   final String? post;
   final String? nickname;
-  final String? time;
+  final DateTime? time;
 
-  CardModel(this.uid, this.post, this.nickname, this.time);
+  PostModel(
+      {required this.id,
+      required this.post,
+      required this.nickname,
+      required this.time});
 }
