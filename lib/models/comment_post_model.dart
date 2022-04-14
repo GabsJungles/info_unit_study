@@ -1,15 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:info_unity_study/models/card_model.dart';
 import 'package:info_unity_study/models/format_time.dart';
-import 'package:info_unity_study/pages/post_details.dart';
+import 'package:info_unity_study/models/format_time2.dart';
 
-class ShowMessages extends StatelessWidget {
+class ShowComments extends StatefulWidget {
+final String postId;
+  ShowComments({ Key? key,
+  required this.postId
+   }) : super(key: key);
+
+  @override
+  State<ShowComments> createState() => _ShowCommentsState();
+}
+
+class _ShowCommentsState extends State<ShowComments> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getPostId();
+  //   print(postId);
+  // }
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
+      return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection("post")
+      .collection('post')
+      .doc(widget.postId)
+          .collection("comments")
           .orderBy("time")
           .snapshots(),
       builder: (context, snapshot) {
@@ -26,39 +43,14 @@ class ShowMessages extends StatelessWidget {
             physics: const ScrollPhysics(),
             itemBuilder: (context, i) {
               QueryDocumentSnapshot document = snapshot.data!.docs[i];
-              return ListTile(
-                  title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                    Container(
-                      decoration: const BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Color.fromARGB(255, 156, 155, 155),
-                            blurRadius: 10.0)
-                      ]),
-                      width: 350,
-                      height: 150,
-                      child: InkWell(
-                        onTap: (() {
-                          final id = document["id"];
-                          final nickname = document["nickname"];
-                          final post = document["post"];
-                          Timestamp time = document["time"];
-                          final timeAsDate = time.toDate();
-                          final postModel = PostModel(
-                              id: id,
-                              nickname: nickname,
-                              post: post,
-                              time: timeAsDate);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      PostDetails(post: postModel))));
-                        }),
-                        child: Card(
-                          color: Colors.white,
-                          elevation: 4,
+              return Column(
+                children: [
+                  ListTile(
+                      title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                        Card(
+                          elevation: 2,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16)),
                           child: Card(
@@ -76,30 +68,44 @@ class ShowMessages extends StatelessWidget {
                                     Text(document['nickname'],
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline2!
-                                            .copyWith(color: Colors.black, fontWeight: FontWeight.bold)),
-                                    FormatDate(
+                                            .headline3!
+                                            .copyWith(color: Colors.black)),
+                                    FormateDate2(
                                         time: (document['time'] as Timestamp)
-                                            .toDate())
+                                            .toDate()),
+
                                   ],
                                 ),
                                 const SizedBox(
                                   height: 30,
                                 ),
-                                Text(document['post'],
+                                Text(document['comment'],
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline3!
+                                        .headline4!
                                         .copyWith(color: Colors.black)),
                               ],
                             ),
                           ),
-                        ),
-                      ),
-                    )
-                  ]));
+                        )
+                      ])),
+                ],
+              );
             });
       },
     );
+
+    }
   }
-}
+  
+//   dynamic data;
+// Future<void> getPostId() async {
+//     final DocumentReference document =
+//         FirebaseFirestore.instance.collection("post").doc();
+//     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+//       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+//       setState(() {
+//         postId = data['id'];
+//       });
+//     });
+// }

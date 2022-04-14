@@ -65,7 +65,8 @@ class _PostDetailsState extends State<PostDetails> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline2!
-                                      .copyWith(color: Colors.black)),
+                                      .copyWith(color: Colors.black, fontWeight: FontWeight.bold)),
+                                      
                               FormatDate(time: widget.post.time!)
                             ],
                           ),
@@ -75,14 +76,16 @@ class _PostDetailsState extends State<PostDetails> {
                           Text(widget.post.post!,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline4!
+                                  .headline3!
                                   .copyWith(color: Colors.black)),
                         ],
                       ),
                     ),
                     // children: const <Widget>[ListTile(title: Text('a'))],
                     children: [
-                      CommentField()
+                      CommentField(
+                        post: widget.post,
+                      )
                     ],
                   ),
                 ),
