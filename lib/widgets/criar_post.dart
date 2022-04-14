@@ -34,44 +34,47 @@ class _CriarPostState extends State<CriarPost> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+              margin: const EdgeInsets.fromLTRB(20,20,20,0),
               width: 300,
               height: 80,
               child: TextField(
                 controller: post,
                 decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                        onPressed: () {
+                  suffixIcon: IconButton(
+                        onPressed: () async {
                           if (post.text.isNotEmpty) {
-                            storeMessage.collection("post").doc().set({
+                            final postDoc = storeMessage.collection("post").doc();
+                            await postDoc.set({
                               "post": post.text.trim(),
                               "time": DateTime.now(),
                               "nickname": nickname,
                             });
+                            await postDoc.update({
+                              "id": postDoc.id,
+                            });
                             post.clear();
                           }
                         },
-                        icon: Icon(Icons.send, color: Colors.black)),
-                    hintText: 'Qual é a boa?',
-                    hintStyle: Theme.of(context)
-                        .textTheme
-                        .headline3!
-                        .copyWith(color: Colors.black),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.black),
-                    )),
+                        icon: const Icon(Icons.send, color: Colors.black)),
+                  hintText: 'Qual é a boa?',
+                  hintStyle: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.black),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black),
+                  )
+                ),
+                
               ),
             ),
           ],
         ),
         SingleChildScrollView(
-          physics: ScrollPhysics(),
-          reverse: true,
-          child: ShowMessages(),
-        ),
+              physics: const ScrollPhysics(),
+              reverse: true,
+              child: ShowMessages(),
+            ),
       ],
     );
   }

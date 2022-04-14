@@ -18,19 +18,33 @@
 //   CollectionReference userRef = FirebaseFirestore.instance.collection('users');
 
 //   final _formKey = GlobalKey<FormState>();
-//   late List<String> comments;
+//   late String comments = ' ';
 
 //   sendComment() async {
 //     _formKey.currentState!.save();
 
 //     var doc = userRef.doc('post');
+//     var docComment = userRef.doc('post').collection('comments');
 //     doc.set({
 //       'comment': comments,
+//       'postId': UserId,
+//       'nickname': nickname,
+//       "id": docComment.id, 
 //     });
 //   }
 
 //   @override
+//   void initState() {
+//     super.initState();
+//     getUserId();
+//   }
+
+//   String? UserId;
+//   String? nickname;
+
+//   @override
 //   Widget build(BuildContext context) {
+
 //     return Scaffold(
 //       backgroundColor: Colors.black,
 //       body: Container(
@@ -43,9 +57,9 @@
 //                 mainAxisAlignment: MainAxisAlignment.start,
 //                 children: [
 //                   Padding(
-//                     padding: EdgeInsets.only(top: 50),
+//                     padding: const EdgeInsets.only(top: 50),
 //                     child: TextFormField(
-//                         style: TextStyle(
+//                         style: const TextStyle(
 //                           color: Colors.black,
 //                         ),
 //                         decoration: const InputDecoration(
@@ -53,8 +67,8 @@
 //                             labelStyle: TextStyle(
 //                               color: Colors.black,
 //                             )),
-//                         onSaved: (List) {
-//                           comments = List!;
+//                         onSaved: (value) {
+//                           comments = value!;
 //                         }),
 //                   )
 //                 ],
@@ -69,5 +83,30 @@
 //         ],
 //       )),
 //     );
+//   }
+
+//   dynamic data;
+// Future<void> getUserId() async {
+//     var currentUser = FirebaseAuth.instance.currentUser;
+//     final DocumentReference document =
+//         FirebaseFirestore.instance.collection("post").doc(currentUser!.uid);
+//     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+//       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+//       setState(() {
+//         UserId = data['id'];
+//       });
+//     });
+//   }
+
+// Future<void> getNickname() async {
+//     var currentUser = FirebaseAuth.instance.currentUser;
+//     final DocumentReference document =
+//         FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+//     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+//       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+//       setState(() {
+//         nickname = data['nickname'];
+//       });
+//     });
 //   }
 // }
