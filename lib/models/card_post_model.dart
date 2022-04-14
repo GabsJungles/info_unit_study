@@ -4,7 +4,15 @@ import 'package:info_unity_study/models/card_model.dart';
 import 'package:info_unity_study/models/format_time.dart';
 import 'package:info_unity_study/pages/post_details.dart';
 
-class ShowMessages extends StatelessWidget {
+class ShowMessages extends StatefulWidget {
+  const ShowMessages({Key? key,
+  }) : super(key: key);
+
+  @override
+  State<ShowMessages> createState() => _ShowMessagesState();
+}
+
+class _ShowMessagesState extends State<ShowMessages> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(

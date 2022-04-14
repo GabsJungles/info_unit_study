@@ -5,9 +5,9 @@ import 'package:info_unity_study/models/card_post_model.dart';
 import 'package:info_unity_study/models/format_time.dart';
 import 'package:intl/intl.dart';
 
-
 class CriarPost extends StatefulWidget {
-  const CriarPost({ Key? key,
+  const CriarPost({
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -15,20 +15,21 @@ class CriarPost extends StatefulWidget {
 }
 
 class _CriarPostState extends State<CriarPost> {
-   @override
+  @override
   void initState() {
     super.initState();
     getNickname();
   }
+
   String? nickname;
-final storeMessage = FirebaseFirestore.instance;
-TextEditingController post = TextEditingController();
+  final storeMessage = FirebaseFirestore.instance;
+  TextEditingController post = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
-       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -66,7 +67,6 @@ TextEditingController post = TextEditingController();
                 ),
                 
               ),
-              
             ),
           ],
         ),
@@ -77,11 +77,10 @@ TextEditingController post = TextEditingController();
             ),
       ],
     );
-
   }
 
   dynamic data;
-Future<void> getNickname() async {
+  Future<void> getNickname() async {
     var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
@@ -92,5 +91,4 @@ Future<void> getNickname() async {
       });
     });
   }
-
 }
