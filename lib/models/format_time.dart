@@ -24,7 +24,11 @@ class _FormatDateState extends State<FormatDate> {
         height: 25,
         width: 100,
         decoration: BoxDecoration(
-            color: const Color(0xFF8F00FF),
+          gradient: const LinearGradient(
+            colors: [Color.fromARGB(255, 83, 77, 77), Color(0xFF8F00FF)],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+          ),
             borderRadius: BorderRadius.circular(15.0)),
         child: Center(
             child: Text(

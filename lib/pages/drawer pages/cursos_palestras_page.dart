@@ -4,25 +4,24 @@ import 'package:info_unity_study/widgets/criar_post.dart';
 import 'package:info_unity_study/widgets/custom_appbar.dart';
 import 'package:info_unity_study/widgets/custom_drawer.dart';
 
-class CalendarioPage extends StatefulWidget {
-  const CalendarioPage({ Key? key }) : super(key: key);
+class CursosPalestrasPage extends StatefulWidget {
+  const CursosPalestrasPage({ Key? key }) : super(key: key);
 
   @override
-  State<CalendarioPage> createState() => _CalendarioPageState();
+  State<CursosPalestrasPage> createState() => _CursosPalestrasPageState();
 }
 
-class _CalendarioPageState extends State<CalendarioPage> {
+class _CursosPalestrasPageState extends State<CursosPalestrasPage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      endDrawer: CustomDrawer(),
-      appBar: CustomAppBar(title: 'CALENDÁRIO'),
+      endDrawer: const CustomDrawer(),
+      appBar: const CustomAppBar(title: 'CURSOS/PALESTRAS'),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CriarPost(),
-            SizedBox(height: 40),
-            // CardPost(text: 'teste')
+            const CriarPost(),
+            const SizedBox(height: 40),
           ],
         ),
       ),

@@ -25,7 +25,7 @@ class _FormatDate2State extends State<FormateDate2> {
         width: 80,
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Color.fromARGB(255, 166, 0, 255), Color(0xffFF45EC), Color(0xffFF45EC)],
+            colors: [Color(0xffFF7759), Color(0xffFF5CEF)],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
