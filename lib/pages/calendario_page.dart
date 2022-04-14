@@ -17,12 +17,14 @@ class _CalendarioPageState extends State<CalendarioPage> {
     return  Scaffold(
       endDrawer: CustomDrawer(),
       appBar: CustomAppBar(title: 'CALENDÁRIO'),
-      body: Column(
-        children: [
-          CriarPost(),
-          SizedBox(height: 40),
-          // CardPost(text: 'teste')
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CriarPost(),
+            SizedBox(height: 40),
+            // CardPost(text: 'teste')
+          ],
+        ),
       ),
     );
   }

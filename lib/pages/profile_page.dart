@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:info_unity_study/pages/login_page.dart';
+import 'package:info_unity_study/widgets/custom_buttonback.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 import 'package:info_unity_study/controllers/image_controller.dart';
 
@@ -152,6 +153,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     backgroundColor: Colors.transparent,
                     body: Column(
                       children: [
+                        SizedBox(height: 40),
+                        Row(
+                          children: [
+                            ButtonBack()
+                          ],
+                        ),
                         const SizedBox(
                           height: 100,
                         ),
@@ -267,7 +274,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                           ),
                         ),
-                        SizedBox(height: 150),
+                        SizedBox(height: 50),
 
                         CustomButtons2(
                             text: 'SAIR',

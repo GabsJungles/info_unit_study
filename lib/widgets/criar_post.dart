@@ -6,7 +6,8 @@ import 'package:info_unity_study/models/format_time.dart';
 import 'package:intl/intl.dart';
 
 class CriarPost extends StatefulWidget {
-  const CriarPost({ Key? key,
+  const CriarPost({
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -14,69 +15,72 @@ class CriarPost extends StatefulWidget {
 }
 
 class _CriarPostState extends State<CriarPost> {
-   @override
+  @override
   void initState() {
     super.initState();
     getNickname();
   }
+
   String? nickname;
-final storeMessage = FirebaseFirestore.instance;
-TextEditingController post = TextEditingController();
+  final storeMessage = FirebaseFirestore.instance;
+  TextEditingController post = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
-       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(20,20,20,0),
+              margin: const EdgeInsets.fromLTRB(20,20,20,0),
               width: 300,
               height: 80,
               child: TextField(
                 controller: post,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (post.text.isNotEmpty) {
-                            storeMessage.collection("post").doc().set({
+                            final postDoc = storeMessage.collection("post").doc();
+                            await postDoc.set({
                               "post": post.text.trim(),
                               "time": DateTime.now(),
                               "nickname": nickname,
                             });
+                            await postDoc.update({
+                              "id": postDoc.id,
+                            });
                             post.clear();
                           }
                         },
-                        icon: Icon(Icons.send, color: Colors.black)),
+                        icon: const Icon(Icons.send, color: Colors.black)),
                   hintText: 'Qual é a boa?',
                   hintStyle: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.black),
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   )
                 ),
                 
               ),
-              
             ),
           ],
         ),
         SingleChildScrollView(
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               reverse: true,
               child: ShowMessages(),
             ),
       ],
     );
-
   }
 
   dynamic data;
-Future<void> getNickname() async {
+  Future<void> getNickname() async {
     var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
@@ -87,5 +91,4 @@ Future<void> getNickname() async {
       });
     });
   }
-
 }
