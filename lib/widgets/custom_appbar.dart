@@ -33,6 +33,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: true, 
      actions: [
        
+
             Builder(
               builder: ((context) {
                 return IconButton(
@@ -54,9 +55,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                     fit: BoxFit.contain),
                     shape: BoxShape.circle),
                   ),
-                  const SizedBox(height: 0),
+                  const SizedBox(height: 10),
               Text(title, style: Theme.of(context).textTheme.headline3),
-              SearchBar(),
+              const SearchBar(),
             ],
           ),
     );
@@ -66,7 +67,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       centerTitle: true, 
       backgroundColor: Colors.black,
-      leading: ButtonBack(),
+      leading: const ButtonBack(),
      actions: [
             Builder(
               builder: ((context) {
@@ -89,10 +90,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                     fit: BoxFit.contain),
                     shape: BoxShape.circle),
                   ),
-                  const SizedBox(height: 0),
+                  const SizedBox(height: 10),
   
               Text(title, style: Theme.of(context).textTheme.headline3),
-              SearchBar(),
+              const SearchBar(),
             ],
           ),
     );
@@ -100,5 +101,5 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(170.0);
+  Size get preferredSize => const Size.fromHeight(170.0);
 }

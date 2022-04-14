@@ -3,7 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:info_unity_study/pages/calendario_page.dart';
+import 'package:info_unity_study/pages/drawer%20pages/avaliacoes_page.dart';
+import 'package:info_unity_study/pages/drawer%20pages/calendario_page.dart';
+import 'package:info_unity_study/pages/drawer%20pages/cursos_palestras_page.dart';
+import 'package:info_unity_study/pages/drawer%20pages/disciplinas_page.dart';
+import 'package:info_unity_study/pages/drawer%20pages/estagio_page.dart';
+import 'package:info_unity_study/pages/drawer%20pages/favoritos_page.dart';
 import 'package:info_unity_study/pages/profile_page.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -61,17 +66,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 //DRAWER HEADER
                 DrawerHeader(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0xFF420074),
                   ),
                   child: InkWell(
                     onTap: () 
                     {
                     Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => ProfilePage()))
+                    MaterialPageRoute(builder: ((context) => const ProfilePage()))
                     );
                 },
-                    child: CircleAvatar()
+                    child: const CircleAvatar()
                   ),
                 ),
                 const ListTile(title: Text('')),
@@ -94,7 +99,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => CalendarioPage())));
+                            builder: ((context) => const CalendarioPage())));
                   },
                 ),
                 //DISCIPLINAS
@@ -112,6 +117,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   title: Text('DISCIPLINAS',
                       style: Theme.of(context).textTheme.headline3),
+                      onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const DisciplinasPage())));
+                  },
+                      
                 ),
                 //CURSOS E PALESTRAS
                 ListTile(
@@ -128,6 +140,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   title: Text('CURSOS/PALESTRAS',
                       style: Theme.of(context).textTheme.headline3),
+                      onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const CursosPalestrasPage())));
+                  },
                 ),
                 //AVALIAÇÕES
                 ListTile(
@@ -144,6 +162,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   title: Text('AVALIAÇÕES',
                       style: Theme.of(context).textTheme.headline3),
+                      onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const AvaliacoesPage())));
+                  },
                 ),
                 //ESTÁGIO
                 ListTile(
@@ -160,6 +184,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   title: Text('ESTÁGIO',
                       style: Theme.of(context).textTheme.headline3),
+                      onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const EstagioPage())));
+                  },
                 ),
                 //FAVORITOS
                 ListTile(
@@ -176,6 +206,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                   title: Text('FAVORITOS',
                       style: Theme.of(context).textTheme.headline3),
+                      onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const FavoritosPage())));
+                  },
                 ),
               ],
             ),

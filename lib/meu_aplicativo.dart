@@ -19,7 +19,7 @@ class MeuAplicativo extends StatelessWidget {
         title: 'Info Unity Study',
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: RegisterPage1(),
+        home: LoginPage(),
       );
   }
 }
