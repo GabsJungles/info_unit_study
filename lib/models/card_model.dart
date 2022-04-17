@@ -8,5 +8,5 @@ class PostModel {
       {required this.id,
       required this.post,
       required this.nickname,
-      required this.time});
+      required this.time, tag});
 }

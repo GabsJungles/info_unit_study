@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_post_model.dart';
-import 'package:info_unity_study/models/format_time.dart';
-import 'package:intl/intl.dart';
+
 
 class CriarPost extends StatefulWidget {
   const CriarPost({
@@ -19,11 +18,15 @@ class _CriarPostState extends State<CriarPost> {
   void initState() {
     super.initState();
     getNickname();
+    getUserCourse();
+    getTag();
   }
 
   String? nickname;
   final storeMessage = FirebaseFirestore.instance;
   TextEditingController post = TextEditingController();
+  String? selectedCourse;
+  String? tagText;
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +51,13 @@ class _CriarPostState extends State<CriarPost> {
                               "post": post.text.trim(),
                               "time": DateTime.now(),
                               "nickname": nickname,
-                            });
-                            await postDoc.update({
                               "id": postDoc.id,
+                              "tag": tagText,
                             });
                             post.clear();
                           }
                         },
+                        
                         icon: const Icon(Icons.send, color: Colors.black)),
                   hintText: 'Qual é a boa?',
                   hintStyle: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.black),
@@ -63,6 +66,10 @@ class _CriarPostState extends State<CriarPost> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Color(0xFF8F00FF)),
                   )
                 ),
                 
@@ -70,8 +77,8 @@ class _CriarPostState extends State<CriarPost> {
             ),
           ],
         ),
-        SingleChildScrollView(
-              physics: const ScrollPhysics(),
+        const SingleChildScrollView(
+              physics: ScrollPhysics(),
               reverse: true,
               child: ShowMessages(),
             ),
@@ -88,6 +95,30 @@ class _CriarPostState extends State<CriarPost> {
       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
       setState(() {
         nickname = data['nickname'];
+      });
+    });
+  }
+
+  Future<void> getUserCourse() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        selectedCourse = data['course'];
+      });
+    });
+  }
+
+  Future<void> getTag() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        tagText = data['tag'];
       });
     });
   }

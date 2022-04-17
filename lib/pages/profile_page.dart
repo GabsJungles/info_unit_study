@@ -12,7 +12,9 @@ import 'package:info_unity_study/controllers/image_controller.dart';
 class ProfilePage extends StatefulWidget {
   final String? selectedCourse;
   final String? selectedSemester;
-  const ProfilePage({Key? key, this.selectedCourse, this.selectedSemester})
+  String? tagText;
+  ProfilePage(
+      {Key? key, this.selectedCourse, this.selectedSemester, this.tagText})
       : super(key: key);
 
   @override
@@ -83,12 +85,13 @@ class _ProfilePageState extends State<ProfilePage> {
   ];
   String? value2;
   String? value;
-  
+  String? tagText;
   @override
   void initState() {
     super.initState();
     getCourse();
     getSemester();
+    getTag();
   }
 
   dynamic data;
@@ -117,12 +120,23 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  Future<void> getTag() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        tagText = data['tag'];
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var currentUser = FirebaseAuth.instance.currentUser;
     String? selectedCourse = '';
     String? selectedSemester = '';
-
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     return FutureBuilder<DocumentSnapshot>(
         future: users.doc(currentUser!.uid).get(),
@@ -155,9 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         SizedBox(height: 40),
                         Row(
-                          children: [
-                            ButtonBack()
-                          ],
+                          children: [ButtonBack()],
                         ),
                         const SizedBox(
                           height: 100,
@@ -181,8 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   bottomLeft: Radius.circular(10.0),
                                   topLeft: Radius.circular(10.0),
                                   bottomRight: Radius.circular(10.0))),
-                          child:
-                          DropdownButton<String>(
+                          child: DropdownButton<String>(
                             selectedItemBuilder: (_) {
                               return cursos
                                   .map((e) => Container(
@@ -218,7 +229,166 @@ class _ProfilePageState extends State<ProfilePage> {
                               if (value != null) {
                                 selectedCourse = value;
                               }
-                              await updateCourse(selectedCourse!);
+
+                              updateCourse(selectedCourse!);
+                              switch (selectedCourse) {
+                                case 'Administração':
+                                  tagText = "ADM";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Arquitetura e Urbanismo':
+                                  tagText = "Arq&Urb";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Análise e Desenvolvimento de Sistemas':
+                                  tagText = "ADS";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Biomedicina':
+                                  tagText = "Biom";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Ciência da Computação':
+                                  tagText = "CDC";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Ciências Contábeis':
+                                  tagText = "CC";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Cinema e Audiovisual':
+                                  tagText = "C&Aud";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Comércio Exterior':
+                                  tagText = "ComExt";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Criminologia':
+                                  tagText = "Crimino";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Design':
+                                  tagText = "Des";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Design de Animação':
+                                  tagText = "DDA";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Design de Interiores':
+                                  tagText = "DDI";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Design Gráfico':
+                                  tagText = "DesG";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Direito':
+                                  tagText = "Dir";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Engenharia Civil':
+                                  tagText = "EngC";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Engenharia da Computação':
+                                  tagText = "EngComp";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Engenharia de Controle e Automação':
+                                  tagText = "EngCAuto";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Engenharia de Produção':
+                                  tagText = "EngProd";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Engenharia Elétrica':
+                                  tagText = "EngEl";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Engenharia Mecânica':
+                                  tagText = "EngMec";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Engenharia Química':
+                                  tagText = "EngQuím";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Fabricação Mecânica':
+                                  tagText = "FabMec";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Farmácia':
+                                  tagText = "Farm";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Fisioterapia':
+                                  tagText = "Fisio";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Gestão da Tecnologia da Informação':
+                                  tagText = "TecInfo";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Jogos Digitais':
+                                  tagText = "JDig";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Jornalismo':
+                                  tagText = "Jornal";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Marketing':
+                                  tagText = "Mark";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Mecatrônica Industrial':
+                                  tagText = "MecInd";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Medicina Veterinária':
+                                  tagText = "MedVet";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Nutrição':
+                                  tagText = "Nutri";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Odontologia':
+                                  tagText = "Odonto";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Pedagogia':
+                                  tagText = "Pedago";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Produção Audiovisual':
+                                  tagText = "ProdAudio";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Psicologia':
+                                  tagText = "Psico";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Publicidade e Propaganda':
+                                  tagText = "Publi&Prop";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Relações Internacionais':
+                                  tagText = "RI";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Relações Públicas':
+                                  tagText = "RP";
+                                  await updateTag(tagText!);
+                                  break;
+                                case 'Sistemas de Informação':
+                                  tagText = "SI";
+                                  await updateTag(tagText!);
+                                  break;
+                              }
                             },
                           ),
                         ),
@@ -314,8 +484,8 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () async {
                 final pickedFile =
                     await _controller.pickImage(ImageSource.camera);
-                    if(pickedFile != null){
-                await _controller.uploadImage(pickedFile);
+                if (pickedFile != null) {
+                  await _controller.uploadImage(pickedFile);
                 }
                 setState(() {
                   _imageFile = pickedFile;
@@ -332,8 +502,8 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () async {
                 final pickedFile =
                     await _controller.pickImage(ImageSource.gallery);
-                if(pickedFile != null){
-                await _controller.uploadImage(pickedFile);
+                if (pickedFile != null) {
+                  await _controller.uploadImage(pickedFile);
                 }
                 setState(() {
                   _imageFile = pickedFile;
@@ -386,6 +556,16 @@ class _ProfilePageState extends State<ProfilePage> {
     if (currentUser?.uid != null) {
       await firestore.collection("users").doc(currentUser!.uid).update({
         "course": course,
+      });
+    }
+  }
+
+  Future<void> updateTag(String tag) async {
+    final firestore = FirebaseFirestore.instance;
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser?.uid != null) {
+      await firestore.collection("users").doc(currentUser!.uid).update({
+        "tag": tag,
       });
     }
   }

@@ -63,7 +63,7 @@ class _RegisterPage3State extends State<RegisterPage3>
     'Pedagogia',
     'Produção Audiovisual',
     'Psicologia',
-    'Publucidade e Propaganda',
+    'Publicidade e Propaganda',
     'Relações Internacionais',
     'Relações Públicas',
     'Sistemas de Informação',
@@ -85,14 +85,151 @@ class _RegisterPage3State extends State<RegisterPage3>
     '12° período',
   ];
   String? value2 = '1° período';
+  String? tagText;
+
+  @override
+  void initState() {
+    super.initState();
+    getUserCourse();
+  }
 
   @override
   Widget build(BuildContext context) {
+    //CONDIÇÕES TAGS
+    // if(selectedCourse == "Administração"){
+    //   tagText = "ADM";
+    // }
+    // if(selectedCourse == "Análise e Desenvolvimento de Sistemas"){
+    //   tagText = "ADS";
+    // }
+    // if(selectedCourse == "Arquitetura e Urbanismo"){
+    //   tagText = "Arq&Urb";
+    // }
+    switch(selectedCourse){
+      case 'Administração':
+        tagText = "ADM";
+        break;
+      case 'Arquitetura e Urbanismo':
+        tagText = "Arq&Urb";
+        break;
+      case 'Análise e Desenvolvimento de Sistemas':
+        tagText = "ADS";
+        break;
+      case 'Biomedicina':
+        tagText = "Biom";
+        break;
+      case 'Ciência da Computação':
+        tagText = "CDC";
+        break;
+      case 'Ciências Contábeis':
+        tagText = "CC";
+        break;
+      case 'Cinema e Audiovisual':
+        tagText = "C&Aud";
+        break;
+      case 'Comércio Exterior':
+        tagText = "ComExt";
+        break;
+      case 'Criminologia':
+        tagText = "Crim";
+        break;
+      case 'Design':
+        tagText = "Des";
+        break;
+      case 'Design de Animação':
+        tagText = "DDA";
+        break;
+      case 'Design de Interiores':
+        tagText = "DDI";
+        break;
+      case 'Design Gráfico':
+        tagText = "DesG";
+        break;
+      case 'Direito':
+        tagText = "Dir";
+        break;
+      case 'Engenharia Civil':
+        tagText = "EngC";
+        break;
+      case 'Engenharia da Computação':
+        tagText = "EngComp";
+        break;
+      case 'Engenharia de Controle e Automação':
+        tagText = "EngCAuto";
+        break;
+      case 'Engenharia de Produção':
+        tagText = "EngProd";
+        break;
+      case 'Engenharia Elétrica':
+        tagText = "EngEl";
+        break;
+      case 'Engenharia Mecânica':
+        tagText = "EngMec";
+        break;
+      case 'Engenharia Química':
+        tagText = "EngQuím";
+        break;
+      case 'Fabricação Mecânica':
+        tagText = "FabMec";
+        break;
+      case 'Farmácia':
+        tagText = "Farm";
+        break;
+      case 'Fisioterapia':
+        tagText = "Fisio";
+        break;
+      case 'Gestão da Tecnologia da Informação':
+        tagText = "TecInfo";
+        break;
+      case 'Jogos Digitais':
+        tagText = "JDig";
+        break;
+      case 'Jornalismo':
+        tagText = "Jornal";
+        break;
+      case 'Marketing':
+        tagText = "Mark";
+        break;
+      case 'Mecatrônica Industrial':
+        tagText = "MecInd";
+        break;
+      case 'Medicina Veterinária':
+        tagText = "MedVet";
+        break;
+      case 'Nutrição':
+        tagText = "Nutri";
+        break;
+      case 'Odontologia':
+        tagText = "Odonto";
+        break;
+      case 'Pedagogia':
+        tagText = "Pedago";
+        break;
+      case 'Produção Audiovisual':
+        tagText = "ProdAudio";
+        break;
+      case 'Psicologia':
+        tagText = "Psico";
+        break;
+      case 'Publicidade e Propaganda':
+        tagText = "Publi&Prop";
+        break;
+      case 'Relações Internacionais':
+        tagText = "RI";
+        break;
+      case 'Relações Públicas':
+        tagText = "RP";
+        break;
+      case 'Sistemas de Informação':
+        tagText = "SI";
+        break;
+    }
+    
     return Scaffold(
         backgroundColor: Colors.black,
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
             Widget>[
-          const SizedBox(),
+          const SizedBox(height: 50),
           Container(
             height: 130,
             width: 510,
@@ -117,7 +254,7 @@ class _RegisterPage3State extends State<RegisterPage3>
           ),
 
           const SizedBox(
-            height: 100,
+            height: 30,
           ),
 
           Row(
@@ -197,10 +334,10 @@ class _RegisterPage3State extends State<RegisterPage3>
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20.0),
-                    bottomLeft: Radius.circular(20.0),
-                    topLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0))),
+                    topRight: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0),
+                    topLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0))),
             child: DropdownButton<String>(
               selectedItemBuilder: (_) {
                 return periodo
@@ -269,6 +406,9 @@ class _RegisterPage3State extends State<RegisterPage3>
         "course": course,
         "semester": semester,
       });
+      await firestore.collection("users").doc(currentUser.uid).update({
+        "tag": tagText,
+      });
     }
   }
 
@@ -277,5 +417,17 @@ class _RegisterPage3State extends State<RegisterPage3>
         email: widget.email, password: widget.password);
     Navigator.push(
         context, MaterialPageRoute(builder: ((context) => HomePage())));
+  }
+
+  Future<void> getUserCourse() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        selectedCourse = data['course'];
+      });
+    });
   }
 }
