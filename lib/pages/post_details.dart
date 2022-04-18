@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_model.dart';
 import 'package:info_unity_study/widgets/comment_field.dart';
 import 'package:info_unity_study/widgets/custom_buttonback.dart';
-import 'package:info_unity_study/widgets/tags_widget.dart';
+import 'package:info_unity_study/widgets/tags_widgets/tags_widget.dart';
 
 import '../models/format_time.dart';
 
@@ -75,7 +75,7 @@ class _PostDetailsState extends State<PostDetails> {
                                   .textTheme
                                   .headline3!
                                   .copyWith(color: Colors.black)),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                 TagsWidget(postId: widget.post.id),
                         ],
                       ),

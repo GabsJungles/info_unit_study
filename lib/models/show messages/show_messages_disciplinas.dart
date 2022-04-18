@@ -4,7 +4,8 @@ import 'package:info_unity_study/models/card_model.dart';
 import 'package:info_unity_study/models/format_time.dart';
 import 'package:info_unity_study/pages/home_page.dart';
 import 'package:info_unity_study/pages/post_details.dart';
-import 'package:info_unity_study/widgets/tags_widget.dart';
+import 'package:info_unity_study/widgets/tags_widgets/tags_widget.dart';
+import 'package:info_unity_study/widgets/tags_widgets/tags_widget_disciplinas.dart';
 
 class ShowMessagesDisciplinas extends StatefulWidget {
   final String? tagText;
@@ -109,8 +110,8 @@ class _ShowMessagesDisciplinasState extends State<ShowMessagesDisciplinas> {
                                           .textTheme
                                           .headline3!
                                           .copyWith(color: Colors.black)),
-                                  SizedBox(height: 10),
-                                  TagsWidget(postId: document["id"]),
+                                  const SizedBox(height: 10),
+                                  TagsWidgetDisciplinas(postId: document["id"]),
                                 ],
                               ),
                             ),

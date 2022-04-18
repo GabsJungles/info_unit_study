@@ -3,17 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_model.dart';
 
-class TagsWidget extends StatefulWidget {
+class TagsWidgetEstagio extends StatefulWidget {
   final String postId;
-  const TagsWidget({
+  const TagsWidgetEstagio({
     Key? key, required this.postId,
   }) : super(key: key);
 
   @override
-  State<TagsWidget> createState() => _TagsWidgetState();
+  State<TagsWidgetEstagio> createState() => _TagsWidgetEstagioState();
 }
 
-class _TagsWidgetState extends State<TagsWidget> {
+class _TagsWidgetEstagioState extends State<TagsWidgetEstagio> {
   String? tagText;
 
   @override
@@ -47,9 +47,8 @@ class _TagsWidgetState extends State<TagsWidget> {
   }
 
   Future<void> getTag() async {
-    var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
-        FirebaseFirestore.instance.collection("post").doc(widget.postId);
+        FirebaseFirestore.instance.collection("postEstagio").doc(widget.postId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
       setState(() {
