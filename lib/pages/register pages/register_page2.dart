@@ -26,9 +26,9 @@ class _RegisterPage2State extends State<RegisterPage2>
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, children: 
-          <Widget> [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
+            Widget>[
+          const SizedBox(height: 50),
           const SizedBox(),
           Container(
             height: 130,
@@ -68,9 +68,13 @@ class _RegisterPage2State extends State<RegisterPage2>
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
               child: TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xFF8F00FF)),
+                      ),
                       border: OutlineInputBorder(),
                       hintText: 'Digite seu Nome Completo'))),
 
@@ -78,16 +82,21 @@ class _RegisterPage2State extends State<RegisterPage2>
 
           Container(
             alignment: Alignment.bottomLeft,
-            child: Text('APELIDO', style: Theme.of(context).textTheme.headline3),
+            child:
+                Text('APELIDO', style: Theme.of(context).textTheme.headline3),
           ),
 
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
               child: TextField(
                   controller: _nicknameController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xFF8F00FF)),
+                      ),
                       border: OutlineInputBorder(),
                       hintText: 'Digite Seu Apelido'))),
 

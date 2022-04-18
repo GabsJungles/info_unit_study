@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_model.dart';
 import 'package:info_unity_study/models/format_time.dart';
 import 'package:info_unity_study/pages/post_details.dart';
+import 'package:info_unity_study/widgets/tags_widget.dart';
 
 class ShowMessages extends StatefulWidget {
-  const ShowMessages({Key? key,
+  final String? tagText;
+  final PostModel? post;
+  const ShowMessages({
+    Key? key,
+    this.tagText,
+    this.post,
   }) : super(key: key);
 
   @override
@@ -45,19 +51,22 @@ class _ShowMessagesState extends State<ShowMessages> {
                             blurRadius: 10.0)
                       ]),
                       width: 350,
-                      height: 150,
+                      height: 180,
                       child: InkWell(
                         onTap: (() {
                           final id = document["id"];
                           final nickname = document["nickname"];
                           final post = document["post"];
                           Timestamp time = document["time"];
+                          final tag = document["tag"];
                           final timeAsDate = time.toDate();
                           final postModel = PostModel(
-                              id: id,
-                              nickname: nickname,
-                              post: post,
-                              time: timeAsDate);
+                            id: id,
+                            nickname: nickname,
+                            post: post,
+                            time: timeAsDate,
+                            tag: tag,
+                          );
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -85,7 +94,9 @@ class _ShowMessagesState extends State<ShowMessages> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline2!
-                                            .copyWith(color: Colors.black, fontWeight: FontWeight.bold)),
+                                            .copyWith(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
                                     FormatDate(
                                         time: (document['time'] as Timestamp)
                                             .toDate())
@@ -99,6 +110,8 @@ class _ShowMessagesState extends State<ShowMessages> {
                                         .textTheme
                                         .headline3!
                                         .copyWith(color: Colors.black)),
+                                SizedBox(height: 10),
+                                TagsWidget(postId: document["id"]),
                               ],
                             ),
                           ),

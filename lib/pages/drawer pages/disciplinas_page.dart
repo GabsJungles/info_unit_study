@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:info_unity_study/models/card_post_model.dart';
-import 'package:info_unity_study/widgets/criar_post.dart';
+import 'package:info_unity_study/widgets/criar_post/criar_post.dart';
 import 'package:info_unity_study/widgets/custom_appbar.dart';
 import 'package:info_unity_study/widgets/custom_drawer.dart';
+
+import '../../widgets/criar_post/criar_post_disciplinas.dart';
 
 class DisciplinasPage extends StatefulWidget {
   const DisciplinasPage({ Key? key }) : super(key: key);
@@ -20,7 +21,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const CriarPost(),
+            const CriarPostDisciplinas(),
             const SizedBox(height: 40),
           ],
         ),

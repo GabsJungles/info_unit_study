@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:info_unity_study/models/comment_post_model.dart';
 
 import '../models/card_model.dart';
+import '../models/show messages/show_comments.dart';
 
 class CommentField extends StatefulWidget {
   final PostModel post;
@@ -37,6 +37,10 @@ class _CommentFieldState extends State<CommentField> {
               fillColor: Colors.white,
               filled: true,
               border: OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xFF8F00FF)),
+                      ),
               hintText: 'Comente sobre isso...',
               suffixIcon: IconButton(
                   onPressed: () async {

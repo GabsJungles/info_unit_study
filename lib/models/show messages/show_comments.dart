@@ -14,12 +14,6 @@ final String postId;
 }
 
 class _ShowCommentsState extends State<ShowComments> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getPostId();
-  //   print(postId);
-  // }
   @override
   Widget build(BuildContext context) {
       return StreamBuilder<QuerySnapshot>(
@@ -98,14 +92,4 @@ class _ShowCommentsState extends State<ShowComments> {
     }
   }
   
-//   dynamic data;
-// Future<void> getPostId() async {
-//     final DocumentReference document =
-//         FirebaseFirestore.instance.collection("post").doc();
-//     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
-//       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
-//       setState(() {
-//         postId = data['id'];
-//       });
-//     });
-// }
+
