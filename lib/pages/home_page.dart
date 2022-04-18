@@ -1,13 +1,16 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:info_unity_study/models/card_post_model.dart';
-import 'package:info_unity_study/widgets/criar_post.dart';
+import 'package:info_unity_study/models/card_model.dart';
+import 'package:info_unity_study/widgets/criar_post/criar_post.dart';
 import 'package:info_unity_study/widgets/custom_appbar.dart';
 import 'package:info_unity_study/widgets/custom_drawer.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  final PostModel? post;
+  HomePage({Key? key,
+  this.post,
+  }) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();

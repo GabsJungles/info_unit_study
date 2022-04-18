@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_model.dart';
 
 class TagsWidget extends StatefulWidget {
+  // final PostModel? post;
   const TagsWidget({ Key? key,
+  // this.post
    }) : super(key: key);
 
   @override
@@ -46,7 +48,18 @@ class _TagsWidgetState extends State<TagsWidget> {
     }
     }
 
-    Future<void> getTag() async {
+  //   Future<void> getTag() async {
+  //   final DocumentReference document =
+  //       FirebaseFirestore.instance.collection("post").doc(widget.post!.id);
+  //   await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+  //     Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+  //     setState(() {
+  //       tagText = data['tag'];
+  //     });
+  //   });
+  // }
+
+  Future<void> getTag() async {
     var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
@@ -57,5 +70,4 @@ class _TagsWidgetState extends State<TagsWidget> {
       });
     });
   }
-
 }

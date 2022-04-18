@@ -7,9 +7,11 @@ import 'package:info_unity_study/widgets/tags_widget.dart';
 
 class ShowMessages extends StatefulWidget {
   final String? tagText;
+  final PostModel? post;
   const ShowMessages({
     Key? key,
     this.tagText,
+    this.post,
   }) : super(key: key);
 
   @override
@@ -59,11 +61,12 @@ class _ShowMessagesState extends State<ShowMessages> {
                           final tag = document["tag"];
                           final timeAsDate = time.toDate();
                           final postModel = PostModel(
-                              id: id,
-                              nickname: nickname,
-                              post: post,
-                              time: timeAsDate,
-                              tag: tag);
+                            id: id,
+                            nickname: nickname,
+                            post: post,
+                            time: timeAsDate,
+                            tag: tag,
+                          );
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -108,7 +111,7 @@ class _ShowMessagesState extends State<ShowMessages> {
                                         .headline3!
                                         .copyWith(color: Colors.black)),
                                 SizedBox(height: 10),
-                                TagsWidget()
+                                TagsWidget(),
                               ],
                             ),
                           ),

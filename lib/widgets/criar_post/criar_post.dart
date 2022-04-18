@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:info_unity_study/models/card_post_model.dart';
+import 'package:info_unity_study/models/card_model.dart';
+
+import '../../models/show messages/show_messages.dart';
 
 
 class CriarPost extends StatefulWidget {
@@ -77,7 +79,7 @@ class _CriarPostState extends State<CriarPost> {
             ),
           ],
         ),
-        const SingleChildScrollView(
+        SingleChildScrollView(
               physics: ScrollPhysics(),
               reverse: true,
               child: ShowMessages(),

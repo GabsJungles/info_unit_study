@@ -16,11 +16,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
-      final emailController = TextEditingController();
-      final passwordController = TextEditingController();
+  bool _isVisible = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
-  void dispose(){
+  void dispose() {
     emailController.dispose();
     passwordController.dispose();
 
@@ -32,100 +33,109 @@ class _LoginPageState extends State<LoginPage>
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(height: 100),
-              Container(
-                height: 130,
-                width: 510,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  image:
-                      DecorationImage(
-                        image: AssetImage('lib/images/logo.final.gif'),
-                      fit: BoxFit.contain,
-                      ),
-                      shape: BoxShape.circle,
-                ),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
+            Widget>[
+          const SizedBox(height: 100),
+          Container(
+            height: 130,
+            width: 510,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('lib/images/logo.final.gif'),
+                fit: BoxFit.contain,
               ),
+              shape: BoxShape.circle,
+            ),
+          ),
 
-const SizedBox(
-  height: 20,
-
-
-),
+          const SizedBox(
+            height: 20,
+          ),
 //TEXTO ABAIXO DA FOTO DA TELA INICIAL
 
-              Container(
-                child: Text("INFO UNITY STUDY",
-                    style: Theme.of(context).textTheme.headline1),
-              ),
+          Container(
+            child: Text("INFO UNITY STUDY",
+                style: Theme.of(context).textTheme.headline1),
+          ),
 
-              const SizedBox(
-                height: 30,
-              ),
+          const SizedBox(
+            height: 30,
+          ),
 
 //CAMPO DE PREENCHIMENTO DE EMAIL
 
-Container(
-  alignment: Alignment.bottomLeft,
-  child: Text('E-MAIL',
-  style: Theme.of(context).textTheme.headline3),
-),
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: Text('E-MAIL', style: Theme.of(context).textTheme.headline3),
+          ),
 
-                 Padding(
-                      padding:
-                           EdgeInsets.symmetric(horizontal: 6, vertical: 16),
-                      child: TextField(
-                        controller: emailController,
-                          decoration:  InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            border: OutlineInputBorder(),
-                            hintText: 'Digite seu E-mail'
-                          ))),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+              child: TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xFF8F00FF)),
+                      ),
+                      hintText: 'Digite seu E-mail'))),
 
 //CAMPO DE PREENCHIMENTO DE SENHA
 
-Container(
-  alignment: Alignment.bottomLeft,
-  child: Text('SENHA',
-  style: Theme.of(context).textTheme.headline3),
-),
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: Text('SENHA', style: Theme.of(context).textTheme.headline3),
+          ),
 
-                 Padding(
-                      padding:
-                           EdgeInsets.symmetric(horizontal: 6, vertical: 16),
-                      child: TextField(
-                        controller: passwordController,
-                          decoration:  InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            border: OutlineInputBorder(),
-                            hintText: 'Digite sua Senha'
-                          ))),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+              child: TextField(
+                  controller: passwordController,
+                  obscureText: !_isVisible,
+                  decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isVisible = !_isVisible;
+                          });
+                        },
+                        icon: _isVisible
+                            ? Icon(Icons.visibility, color: Color(0xFF8F00FF))
+                            : Icon(Icons.visibility_off, color: Colors.grey),
+                      ),
+                      border: OutlineInputBorder(),
+                      hintText: 'Senha',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xFF8F00FF)),
+                      )))),
 
-
-const SizedBox(
-  height: 20,
-),
+          const SizedBox(
+            height: 20,
+          ),
 
 //BOTÃO DE LOGIN
 
-              CustomButtons2(
-                text: 'LOGIN',
-                onPressed: signIn,
-              )
-            ]),
+          CustomButtons2(
+            text: 'LOGIN',
+            onPressed: signIn,
+          )
+        ]),
       ),
     );
   }
-  Future signIn() async{
+
+  Future signIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim());
-      Navigator.push(context, 
-      MaterialPageRoute(builder: ((context) => HomePage())));
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
+    Navigator.push(
+        context, MaterialPageRoute(builder: ((context) => HomePage())));
   }
 }

@@ -19,7 +19,6 @@ class FormateDate2 extends StatefulWidget {
 class _FormatDate2State extends State<FormateDate2> {
   @override
   Widget build(BuildContext context) {
-    if (widget.time != null) {
       return Container(
         height: 20,
         width: 80,
@@ -36,10 +35,6 @@ class _FormatDate2State extends State<FormateDate2> {
           style: Theme.of(context).textTheme.headline5,
         )),
       );
-    } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
     }
   }
-}
+
