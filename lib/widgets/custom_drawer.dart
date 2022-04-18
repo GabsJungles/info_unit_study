@@ -76,7 +76,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     MaterialPageRoute(builder: ((context) => ProfilePage()))
                     );
                 },
-                    child: const CircleAvatar()
+                    child: const CircleAvatar(
+                      backgroundImage: AssetImage('lib/images/livro.gif',),
+                      backgroundColor: Colors.transparent,
+                      
+                    )
                   ),
                 ),
                 const ListTile(title: Text('')),
