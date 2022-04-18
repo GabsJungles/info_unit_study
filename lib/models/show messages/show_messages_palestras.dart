@@ -110,7 +110,7 @@ class _ShowMessagesPalestrasState extends State<ShowMessagesPalestras> {
                                           .headline3!
                                           .copyWith(color: Colors.black)),
                                   SizedBox(height: 10),
-                                  TagsWidget(),
+                                  TagsWidget(postId: document["id"]),
                                 ],
                               ),
                             ),

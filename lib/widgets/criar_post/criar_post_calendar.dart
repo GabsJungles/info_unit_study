@@ -61,7 +61,7 @@ class _CriarPostCalendarState extends State<CriarPostCalendar> {
                               "post": post.text.trim(),
                               "time": DateTime.now(),
                               "nickname": nickname,
-                              "id": postDoc.id,
+                              "id": postDoc2.id,
                               "tag": tagText,
                             });
                             post.clear();

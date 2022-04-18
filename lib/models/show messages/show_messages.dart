@@ -111,7 +111,7 @@ class _ShowMessagesState extends State<ShowMessages> {
                                         .headline3!
                                         .copyWith(color: Colors.black)),
                                 SizedBox(height: 10),
-                                TagsWidget(),
+                                TagsWidget(postId: document["id"]),
                               ],
                             ),
                           ),

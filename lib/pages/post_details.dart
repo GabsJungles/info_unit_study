@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_model.dart';
-import 'package:info_unity_study/models/user_model.dart';
 import 'package:info_unity_study/widgets/comment_field.dart';
 import 'package:info_unity_study/widgets/custom_buttonback.dart';
 import 'package:info_unity_study/widgets/tags_widget.dart';
@@ -79,7 +76,7 @@ class _PostDetailsState extends State<PostDetails> {
                                   .headline3!
                                   .copyWith(color: Colors.black)),
                                   SizedBox(height: 10),
-                                TagsWidget(),
+                                TagsWidget(postId: widget.post.id),
                         ],
                       ),
                     ),

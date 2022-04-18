@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:info_unity_study/models/card_model.dart';
 
 class TagsWidget extends StatefulWidget {
-  // final PostModel? post;
-  const TagsWidget({ Key? key,
-  // this.post
-   }) : super(key: key);
+  final String postId;
+  const TagsWidget({
+    Key? key, required this.postId,
+  }) : super(key: key);
 
   @override
   State<TagsWidget> createState() => _TagsWidgetState();
@@ -24,14 +24,14 @@ class _TagsWidgetState extends State<TagsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if(tagText != null){
+    if (tagText != null) {
       return Container(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color.fromARGB(255, 161, 46, 117), Color(0xFF8F00FF)],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
+            gradient: const LinearGradient(
+              colors: [Color.fromARGB(255, 161, 46, 117), Color(0xFF8F00FF)],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+            ),
             borderRadius: BorderRadius.circular(15.0)),
         child: Padding(
           padding: const EdgeInsets.all(4.0),
@@ -41,28 +41,15 @@ class _TagsWidgetState extends State<TagsWidget> {
           ),
         ),
       );
-    } else{
-      return const Center(
-        child: CircularProgressIndicator()
-      );
+    } else {
+      return const Center(child: CircularProgressIndicator());
     }
-    }
-
-  //   Future<void> getTag() async {
-  //   final DocumentReference document =
-  //       FirebaseFirestore.instance.collection("post").doc(widget.post!.id);
-  //   await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
-  //     Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
-  //     setState(() {
-  //       tagText = data['tag'];
-  //     });
-  //   });
-  // }
+  }
 
   Future<void> getTag() async {
     var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
-        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+        FirebaseFirestore.instance.collection("post").doc(widget.postId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
       setState(() {

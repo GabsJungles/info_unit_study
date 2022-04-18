@@ -9,12 +9,15 @@ import 'package:info_unity_study/widgets/custom_buttonback.dart';
 import 'package:info_unity_study/widgets/custom_buttons2.dart';
 import 'package:info_unity_study/controllers/image_controller.dart';
 
+import '../models/card_model.dart';
+
 class ProfilePage extends StatefulWidget {
   final String? selectedCourse;
   final String? selectedSemester;
+  final PostModel? post;
   String? tagText;
   ProfilePage(
-      {Key? key, this.selectedCourse, this.selectedSemester, this.tagText})
+      {Key? key, this.selectedCourse, this.selectedSemester, this.tagText, this.post})
       : super(key: key);
 
   @override

@@ -61,7 +61,7 @@ class _CriarPostDisciplinasState extends State<CriarPostDisciplinas> {
                               "post": post.text.trim(),
                               "time": DateTime.now(),
                               "nickname": nickname,
-                              "id": postDoc.id,
+                              "id": postDoc2.id,
                               "tag": tagText,
                             });
                             post.clear();

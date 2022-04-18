@@ -95,16 +95,6 @@ class _RegisterPage3State extends State<RegisterPage3>
 
   @override
   Widget build(BuildContext context) {
-    //CONDIÇÕES TAGS
-    // if(selectedCourse == "Administração"){
-    //   tagText = "ADM";
-    // }
-    // if(selectedCourse == "Análise e Desenvolvimento de Sistemas"){
-    //   tagText = "ADS";
-    // }
-    // if(selectedCourse == "Arquitetura e Urbanismo"){
-    //   tagText = "Arq&Urb";
-    // }
     switch(selectedCourse){
       case 'Administração':
         tagText = "ADM";
